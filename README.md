@@ -4,8 +4,7 @@
 
 - 2 spaces for indentation for JS and CSS (Prettier extension)
 - Components should be written in PascalCase.
-- Functional components will be written by default. If state is required, we will be using React hooks instead of writing class components.
-- Because the app is not complex, state to be managed without the use of Redux or useReducer. Props will either be passed down from parent to child as normally or with the help of the Context API.
+- Functional components will be written by default. If state is required, use use React hooks instead of writing class components. Because the app's component tree hierarchy isn't overly complex, manage state without Redux or useReducer in order to focus on building app features. Props will either be passed down from parent to child as normal or with the help of the Context API.
 - Functional components will be declared with variable names and exported as follows:
   ```
   const ComponentName = props => {

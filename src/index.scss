@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+// import scss components in logical order
+
+@import "./App.scss";
+@import "./components/HeaderNav/HeaderNav.scss";
