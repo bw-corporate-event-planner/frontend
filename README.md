@@ -15,11 +15,12 @@
 - Generally, attempt to destructure props as follows:
 
   ```
+  // in parent file reference child component
   <ComponentName {...props} />
   ```
 
   ```
-  const Component = props => {
+  const ComponentName = props => {
       const {varOne, varTwo, varThree} = props
 
       return (
