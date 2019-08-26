@@ -4,7 +4,7 @@ export const allEvents = [
         name: "Holiday Party",
         event_start: "2019-12-20T07:07:07.357Z",
         event_end: "2019-12-21T07:07:07.357Z",
-        total_budget: 200,
+        total_budget: 3000,
         description: "Sit on Santa's lap.",
         location: {
             street: "180 street St.",

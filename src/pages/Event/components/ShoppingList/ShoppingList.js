@@ -1,17 +1,12 @@
 import React from 'react'
+import ShoppingListItem from './ShoppingListItem'
 
 const ShoppingList = ({shoppingList}) => {
 
     return (
         <div>
             <h4>Shopping List</h4>
-            {shoppingList.map(listItem => 
-                (
-                    <div>
-                        <span>{listItem.item}</span>
-                        <span> ${listItem.cost}</span>
-                    </div>
-                )
+            {shoppingList.map(listItem => <ShoppingListItem listItem={listItem}/>                    
             )}
             
         </div>
