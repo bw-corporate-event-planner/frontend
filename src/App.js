@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom'
 import EventsList from './pages/EventsList'
 import Register from './pages/Register'
-import LoginForm from './pages/Login';
+import LoginForm from './pages/Login/index';
 
 function App() {
   return (

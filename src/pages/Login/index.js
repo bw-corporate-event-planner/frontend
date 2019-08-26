@@ -13,11 +13,11 @@ const LoginForm = ({ errors, touched, values, status }) => {
             <Form>
                 <div>
                     <Field type="text" name="email" placeholder="email" />
-                    {touched.name && errors.name && <p className="name-login">{errors.name}</p>}
+                    {touched.email && errors.email && <p className="email-login">{errors.email}</p>}
                 </div>
                 <div>
                     <Field type="password" name="password" placeholder="password" />
-                    {touched.password && errors.name && <p className="passsword-login">{errors.password}</p>}
+                    {touched.password && errors.password && <p className="passsword-login">{errors.password}</p>}
                 </div>
 
                 <button type="submit">Login</button>
@@ -36,7 +36,7 @@ const FormikLoginForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().required("Please Fill In Your Email"),
+        email: Yup.string().required("Please Fill In Your Email"),
         password: Yup.string().required("Please Enter Your Password")
     })
 })(LoginForm)
