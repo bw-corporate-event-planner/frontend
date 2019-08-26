@@ -16,7 +16,7 @@ const EventsList = (props) => {
                     <p>Budget: ${event.total_budget}</p>
                     <p>From <span>{event.event_start}</span> to <span>{event.event_end}</span></p>
                     <p>{event.location.street}</p>
-                    <Link to={`/events/${event.id}`}>
+                    <Link to={`/event/${event.id}`}>
                         View Event
                     </Link>
                 </div>

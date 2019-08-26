@@ -32,7 +32,7 @@ export const allEvents = [
         name: "Welcome interns",
         event_start: "December 20, 2019",
         event_end: "December 21, 2019",
-        total_budget: 5,
+        total_budget: 1200,
         description: "Party to welcome interns",
         location: {
             street: "200 street St.",

@@ -3,6 +3,8 @@ import {Route} from 'react-router-dom'
 import EventsList from './pages/EventsList/scenes/EventsList'
 import Register from './pages/Register'
 
+import Event from './pages/Event/scenes/Event'
+
 function App() {
   return (
     <div className="App">
