@@ -1,4 +1,9 @@
 import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
+
+let date = new Date()
+date.setDate(date.getDate() + 1)
+const minDateValue = date.toISOString()
 
 const AddEvent = () => {
   const [event, setEvent] = useState({
@@ -6,8 +11,8 @@ const AddEvent = () => {
     title: '',
     description: '',
     location: '',
-    start_date: '',
-    end_date: '',
+    start_date: new Date(),
+    end_date: null,
     total_budget: ''
   })
 
@@ -19,6 +24,16 @@ const AddEvent = () => {
   }
 
   console.log(event)
+
+  const handleChangeStartDate = date => {
+    console.log('datePicker', date)
+    setEvent({ ...event, start_date: date })
+  }
+
+  const handleChangeEndDate = date => {
+    console.log('datePicker', date)
+    setEvent({ ...event, end_date: date })
+  }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -60,26 +75,21 @@ const AddEvent = () => {
           type='text'
           placeholder='Event Location'
         />
-        <input
-          name='start_date'
-          value={start_date}
-          onChange={handleChange}
-          type='date'
-          placeholder='Event Start Date'
+        <DatePicker
+          selected={start_date}
+          onChange={handleChangeStartDate}
+          minDate={minDateValue}
         />
-        <input
-          name='end_date'
-          value={end_date}
-          onChange={handleChange}
-          type='date'
-          placeholder='Event End Date'
+        <DatePicker
+          selected={end_date}
+          onChange={handleChangeEndDate}
+          minDate={minDateValue}
         />
         <input
           name='total_budget'
           value={total_budget}
           onChange={handleChange}
-          type='text'
-          placeholder='Total Budget'
+          type='number'
         />
         <button>Submit Event</button>
       </form>
