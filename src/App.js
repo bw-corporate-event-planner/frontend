@@ -4,6 +4,7 @@ import EventsList from './pages/EventsList/scenes/EventsList'
 import Register from './pages/Register'
 import AddEvent from './pages/AddEvent/AddEvent'
 import LoginForm from './pages/Login/index';
+import Event from './pages/Event/scenes/Event'
 
 function App () {
   return (
