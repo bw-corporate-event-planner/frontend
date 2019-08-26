@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from 'react-router-dom'
-import EventsList from './pages/EventsList'
+import EventsList from './pages/EventsList/scenes/EventsList'
 import Register from './pages/Register'
 
 function App() {
@@ -9,8 +9,8 @@ function App() {
       <h1>Corporate Event Planner</h1>
       <Route exact path="/" component={EventsList}/>
       <Route path="/register" component={Register}/>
-      <Route path="/event" component={Event}/>
-      <Route path="/addevent" component={AddEvent}/>
+      <Route path="/event/:id" component={Event}/>
+      {/* <Route path="/addevent" component={AddEvent}/> */}
 
     </div>
   );
