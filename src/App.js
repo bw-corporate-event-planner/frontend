@@ -2,6 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom'
 import EventsList from './pages/EventsList'
 import Register from './pages/Register'
+import AddEvent from './pages/AddEvent'
 
 function App() {
   return (
