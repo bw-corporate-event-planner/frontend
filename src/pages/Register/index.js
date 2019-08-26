@@ -9,7 +9,7 @@ const RegistrationForm = ({ errors, touched, values, status }) => {
 
     return (
         <div>
-            <h1>Corporate Event Planner: Please Register</h1>
+            <h1>Register For Corporate Event Planner</h1>
             <Form>
                 <div>
                     <Field type="text" name="email" placeholder="email" />
@@ -39,6 +39,6 @@ const FormikRegistrationForm = withFormik({
         email: Yup.string().required("Please Fill In An Email"),
         password: Yup.string().required("Please Enter A Password")
     })
-})(LoginForm)
+})(RegistrationForm)
 
-export default RegistrationForm;
+export default FormikRegistrationForm;

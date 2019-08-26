@@ -9,7 +9,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
 
     return (
         <div>
-            <h1>Corporate Event Planner: Please Login</h1>
+            <h1>Please Login</h1>
             <Form>
                 <div>
                     <Field type="text" name="email" placeholder="email" />
@@ -39,6 +39,6 @@ const FormikLoginForm = withFormik({
         email: Yup.string().required("Please Fill In Your Email"),
         password: Yup.string().required("Please Enter Your Password")
     })
-})(LoginForm)
+})(LoginForm);
 
 export default FormikLoginForm;
