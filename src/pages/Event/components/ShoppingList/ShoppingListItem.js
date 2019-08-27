@@ -30,7 +30,7 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                         <input
                             type="number"
                             name="cost"
-                            value={listItemToEdit.cost}
+                            value={listItemToEdit.item_cost}
                             onChange={handleChange}
                         />
                     </label>
@@ -41,12 +41,12 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                     </div>
                 </form>
             ) : (
-                    <div className={`item-container${listItem.completed ? "-completed" : ""}`}>
+                    <div className={`item-container${listItem.item_complete ? "-completed" : ""}`}>
                         <div className="item-text-container">
                             <p onClick={() => editListItem(listItem, listItem.item_name, "item_name")}>{listItem.item_name}</p>
                         </div>
                         <div className="item-text-container">
-                            <p onClick={() => editListItem(listItem, listItem.cost, "cost")}> ${listItem.cost}</p>
+                            <p onClick={() => editListItem(listItem, listItem.item_cost, "cost")}> ${listItem.item_cost}</p>
                         </div>
                         <div className="item-buttons-container">
                             <span onClick={() => deleteListItem(listItem.id)}>delete</span>

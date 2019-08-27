@@ -33,12 +33,12 @@ const EventsList = (props) => {
                     />
                 </label>
             </form>
-            {eventsList.filter(event => event.name.toLowerCase().includes(searchText.toLowerCase())).map(event => (
+            {eventsList.filter(event => event.event_title.toLowerCase().includes(searchText.toLowerCase())).map(event => (
                 <div>
-                    <h3>{event.name}</h3>
-                    <p>Budget: ${event.total_budget}</p>
+                    <h3>{event.event_title}</h3>
+                    <p>Budget: ${event.event_budget}</p>
                     <p>From <span>{event.event_start}</span> to <span>{event.event_end}</span></p>
-                    <p>{event.location.street}</p>
+                    <p>{event.event_location}</p>
                     <Link to={`/event/${event.id}`}>
                         View Event
                     </Link>

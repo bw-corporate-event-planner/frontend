@@ -3,9 +3,11 @@ import ShoppingListItem from './ShoppingListItem'
 
 const initialListItem = {
     id: "",
-    item: "",
-    cost: null,
-    completed: null
+    event_id: "",
+    item_name: "",
+    item_cost: null,
+    item_complete: false,
+    // item_vendor: ""
 }
 
 const ShoppingList = ({ shoppingList }) => {
@@ -30,7 +32,7 @@ const ShoppingList = ({ shoppingList }) => {
         let temp = shoppingListItems.map(item => {
             if (item.id === id) {
                 // console.log(item.id, id)
-                return { ...item, completed: !item.completed }
+                return { ...item, item_complete: !item.item_complete }
             }
             return item
         })
