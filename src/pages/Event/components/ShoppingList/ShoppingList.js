@@ -7,9 +7,10 @@ const initialListItem = {
     cost: null,
     completed: null
 }
+
 const ShoppingList = ({ shoppingList }) => {
 
-    // const [editing, setEditing] = useState({ id: "", flag: false })
+    const [shoppingListItems, setShoppingListItems] = useState(shoppingList)
     const [editing, setEditing] = useState(false)
     const [listItemToEdit, setListItemToEdit] = useState(initialListItem)
 
@@ -23,11 +24,24 @@ const ShoppingList = ({ shoppingList }) => {
 
     }
 
+    const toggleItem = id => {
+        let temp = shoppingListItems.map(item => {
+            if (item.id === id) {
+                // console.log(item.id, id)
+                return { ...item, completed: !item.completed }
+            }
+            return item
+        })
+        setShoppingListItems(temp)
+        console.log(shoppingListItems)
+    }
+
+
     return (
         <div className="shopping-list-container">
             <h4>Shopping List</h4>
             <div className="shopping-list-items-container">
-                {shoppingList.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} />
+                {shoppingListItems.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} toggleItem={toggleItem} />
                 )}
             </div>
 

@@ -1,12 +1,9 @@
 import React from 'react'
 
-const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, setListItemToEdit }) => {
+const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, setListItemToEdit, toggleItem }) => {
 
-    console.log("LIST ITEM TO EDIT", listItemToEdit)
-
-    // Why isn't this working?
     const handleChange = e => {
-        console.log(e.target.name)
+        // console.log(e.target.name)
         setListItemToEdit({ ...listItemToEdit, [e.target.name]: e.target.value })
     }
 
@@ -54,7 +51,7 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                         <div className="item-buttons-container">
                             <span>delete</span>
                             <span>edit</span>
-                            <span>toggle</span>
+                            <span onClick={() => toggleItem(listItem.id)}>toggle</span>
                         </div>
                     </div>
                 )
