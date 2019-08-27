@@ -6,10 +6,28 @@ import {allEvents} from '../../../services/data'
 const EventsList = (props) => {
     // console.log(allEvents)
     const [eventsList, setEventsList] = useState(allEvents)
-    console.log(eventsList)
+    const [searchText, setSearchText] = useState("")
+
+    const handleSearch = e => {
+        setSearchText(e.target.value)
+        console.log(searchText)
+
+        let searchMatches = eventsList.filter(event => event.name === searchText)
+        setEventsList(searchMatches)
+    }
+
     return (
         <div>
             <h2>Upcoming events</h2>
+            <form>
+                <label> Search by name
+                    <input 
+                        value={searchText}
+                        placeholder="Holiday party"
+                        onChange={handleSearch}
+                    />
+                </label>
+            </form>
             {eventsList.map(event => (
                 <div>
                     <h3>{event.name}</h3>
@@ -19,6 +37,7 @@ const EventsList = (props) => {
                     <Link to={`/event/${event.id}`}>
                         View Event
                     </Link>
+                    <hr></hr>
                 </div>
                 )
             )}
