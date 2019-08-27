@@ -50,7 +50,7 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                         </div>
                         <div className="item-buttons-container">
                             <span onClick={() => deleteListItem(listItem.id)}>delete</span>
-                            <span>edit</span>
+                            <span onClick={() => editListItem(listItem)}>edit</span>
                             <span onClick={() => toggleListItem(listItem.id)}>toggle</span>
                         </div>
                     </div>
