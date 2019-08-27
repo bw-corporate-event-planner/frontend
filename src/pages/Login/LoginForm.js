@@ -68,15 +68,15 @@ const FormikLoginForm = withFormik({
       };
     },
     
-    // use yup to enforce input requirements 
-    // validationSchema: Yup.object().shape({
-    //     username: Yup
-    //     .string()
-    //     .required("Please Enter Your Name"),
-    //     password: Yup
-    //     .string()
-    //     .required("Please Enter Your Password"),
-    // }),
+    //use yup to enforce input requirements 
+    validationSchema: Yup.object().shape({
+        username: Yup
+        .string()
+        .required("Please Enter Your Name"),
+        password: Yup
+        .string()
+        .required("Please Enter Your Password"),
+    }),
     
     // update values and set status 
     handleSubmit(values, formik) {
