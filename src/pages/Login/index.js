@@ -4,12 +4,12 @@ import axios from "axios";
 import * as Yup from 'yup';
 
 
-const RegistrationForm = ({ errors, touched, values, status }) => {
+const LoginForm = ({ errors, touched, values, status }) => {
 
 
     return (
         <div>
-            <h1>Register For Corporate Event Planner</h1>
+            <h1>Please Login</h1>
             <Form>
                 <div>
                     <Field type="text" name="email" placeholder="email" />
@@ -20,14 +20,14 @@ const RegistrationForm = ({ errors, touched, values, status }) => {
                     {touched.password && errors.password && <p className="passsword-login">{errors.password}</p>}
                 </div>
 
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
             </Form>
         </div>
 
     );
 }
 
-const FormikRegistrationForm = withFormik({
+const FormikLoginForm = withFormik({
     mapPropsToValues({ email, password, }) {
         return{
             email : email || "",
@@ -36,9 +36,9 @@ const FormikRegistrationForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        email: Yup.string().required("Please Fill In An Email"),
-        password: Yup.string().required("Please Enter A Password")
+        email: Yup.string().required("Please Fill In Your Email"),
+        password: Yup.string().required("Please Enter Your Password")
     })
-})(RegistrationForm)
+})(LoginForm);
 
-export default FormikRegistrationForm;
+export default FormikLoginForm;
