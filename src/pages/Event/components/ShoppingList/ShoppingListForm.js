@@ -4,8 +4,6 @@ const ShoppingListForm = ({addListItem, initialListItem}) => {
 
     const [input, setInput] = useState(initialListItem);
 
-    console.log(input)
-
     const handleChange = e => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
         // console.log("target", value)
@@ -26,7 +24,7 @@ const ShoppingListForm = ({addListItem, initialListItem}) => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="add-item-form">
                 <input
                     name='item_name'
                     value={input.item_name}

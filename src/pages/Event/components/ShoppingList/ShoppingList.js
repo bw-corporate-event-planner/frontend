@@ -3,7 +3,7 @@ import ShoppingListForm from './ShoppingListForm'
 import ShoppingListItem from './ShoppingListItem'
 
 const initialListItem = {
-    id: Date.now(),
+    id: null,
     event_id: "",
     item_name: "",
     item_cost: 0,
