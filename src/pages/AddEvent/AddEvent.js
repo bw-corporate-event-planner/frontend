@@ -1,53 +1,58 @@
-import React, { useState } from 'react'
-import DatePicker from 'react-datepicker'
+import React, { useState } from 'react';
+// import DatePicker from 'react-datepicker';
 
-let date = new Date()
-date.setDate(date.getDate() + 1)
-const minDateValue = date.toISOString()
+// let date = new Date();
+// date.setDate(date.getDate() + 1);
+// const minDateValue = date.toISOString();
 
-const AddEvent = () => {
-  const [event, setEvent] = useState({
-    id: 0,
+const AddEvent = props => {
+  console.log(props);
+  // const [event, setEvent] = useState([]);
+
+  const [input, setInput] = useState({
     title: '',
     description: '',
     location: '',
-    start_date: new Date(),
-    end_date: null,
-    total_budget: ''
-  })
+    start_date: '',
+    end_date: '',
+    total_budget: '',
+  });
 
   const handleChange = e => {
-    setEvent({
-      ...event,
-      [e.target.name]: e.target.value
-    })
-  }
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  console.log(event)
+  console.log(input);
 
-  const handleChangeStartDate = date => {
-    console.log('datePicker', date)
-    setEvent({ ...event, start_date: date })
-  }
+  // const handleChangeStartDate = date => {
+  //   console.log('datePicker', date);
+  //   setEvent({ ...input, start_date: date });
+  // };
 
-  const handleChangeEndDate = date => {
-    console.log('datePicker', date)
-    setEvent({ ...event, end_date: date })
-  }
+  // const handleChangeEndDate = date => {
+  //   console.log('datePicker', date);
+  //   setEvent({ ...input, end_date: date });
+  // };
 
   const handleSubmit = e => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+    props.history.push('/event/1');
 
-  const {
-    id,
-    title,
-    description,
-    location,
-    start_date,
-    end_date,
-    total_budget
-  } = event
+    console.log('the input', input);
+    setInput({
+      title: '',
+      description: '',
+      location: '',
+      start_date: '',
+      end_date: '',
+      total_budget: '',
+    });
+  };
+
+  console.log(input);
 
   return (
     <>
@@ -56,44 +61,62 @@ const AddEvent = () => {
 
         <input
           name='title'
-          value={title}
+          value={input.title}
           onChange={handleChange}
           type='text'
           placeholder='Event Title'
         />
         <input
           name='description'
-          value={description}
+          value={input.description}
           onChange={handleChange}
           type='text'
           placeholder='Event Description'
         />
         <input
           name='location'
-          value={location}
+          value={input.location}
           onChange={handleChange}
           type='text'
           placeholder='Event Location'
         />
-        <DatePicker
-          selected={start_date}
+        <input
+          name='start_date'
+          value={input.start_date}
+          onChange={handleChange}
+          type='date'
+          placeholder='Start date'
+        />
+        <input
+          name='end_date'
+          value={input.end_date}
+          onChange={handleChange}
+          type='date'
+          placeholder='End Date'
+        />
+
+        {/* <DatePicker
+          selected={input.start_date}
           onChange={handleChangeStartDate}
           minDate={minDateValue}
         />
-        <DatePicker
-          selected={end_date}
-          onChange={handleChangeEndDate}
-          minDate={minDateValue}
-        />
+        <div>
+          <DatePicker
+            selected={input.end_date}
+            onChange={handleChangeEndDate}
+            minDate={minDateValue}
+          />
+        </div> */}
+
         <input
           name='total_budget'
-          value={total_budget}
+          value={input.total_budget}
           onChange={handleChange}
-          type='number'
+          type='text'
         />
         <button>Submit Event</button>
       </form>
     </>
-  )
-}
-export default AddEvent
+  );
+};
+export default AddEvent;
