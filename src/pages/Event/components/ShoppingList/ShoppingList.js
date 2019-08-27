@@ -14,18 +14,22 @@ const ShoppingList = ({ shoppingList }) => {
     const [listItemToEdit, setListItemToEdit] = useState(initialListItem)
 
     const editListItem = (item, item_prop, key_name) => {
-
         // console.log("item clicked", item, item_prop, key_name)
         setEditing(true)
         setListItemToEdit(item)
-        // console.log(listItemToEdit)
+    }
+
+    const deleteListItem = item => {
+
     }
 
     return (
-        <div>
+        <div className="shopping-list-container">
             <h4>Shopping List</h4>
-            {shoppingList.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} />
-            )}
+            <div className="shopping-list-items-container">
+                {shoppingList.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} />
+                )}
+            </div>
 
         </div>
     )

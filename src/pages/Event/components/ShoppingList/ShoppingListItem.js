@@ -16,7 +16,7 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
     }
 
     return (
-        <>
+        <div>
             {/* Conditional rendering of form or item based on editing boolean */}
             {/* {editing ? ( */}
             {listItemToEdit.id === listItem.id ? (
@@ -37,15 +37,29 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                             onChange={handleChange}
                         />
                     </label>
+                    <div className="item-buttons-container">
+                        <span>delete</span>
+                        <span>edit</span>
+                        <span>toggle</span>
+                    </div>
                 </form>
             ) : (
                     <div className={`item-container${listItem.completed ? "-completed" : ""}`}>
-                        <span onClick={() => editListItem(listItem, listItem.item_name, "item_name")}>{listItem.item_name}</span>
-                        <span onClick={() => editListItem(listItem, listItem.cost, "cost")}> ${listItem.cost}</span>
+                        <div className="item-text-container">
+                            <p onClick={() => editListItem(listItem, listItem.item_name, "item_name")}>{listItem.item_name}</p>
+                        </div>
+                        <div className="item-text-container">
+                            <p onClick={() => editListItem(listItem, listItem.cost, "cost")}> ${listItem.cost}</p>
+                        </div>
+                        <div className="item-buttons-container">
+                            <span>delete</span>
+                            <span>edit</span>
+                            <span>toggle</span>
+                        </div>
                     </div>
                 )
             }
-        </>
+        </div>
     )
 }
 
