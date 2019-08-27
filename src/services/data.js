@@ -15,21 +15,21 @@ export const allEvents = [
         },
         shopping_list: [{
             id: 10,
-            item: "food",
+            item_name: "food",
             cost: 200,
             completed: false
         },
         {
-            id: 20, 
-            item: "hotel rent",
+            id: 20,
+            item_name: "hotel rent",
             cost: 2000,
             completed: false
         }
-    ]
+        ]
     },
     {
         id: 2,
-        name: "Welcome interns",
+        name: "Welcome Interns Party",
         event_start: "December 20, 2019",
         event_end: "December 21, 2019",
         total_budget: 1200,
@@ -43,7 +43,7 @@ export const allEvents = [
         },
         shopping_list: [{
             id: 30,
-            item: "alcohol",
+            item_name: "alcohol",
             cost: 600,
             completed: false
         }]
