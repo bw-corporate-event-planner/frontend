@@ -19,7 +19,7 @@ function App() {
         <Route path="/addevent" component={AddEvent} />
       </AppWrapper>
     </div>
-  )
+  );
 }
 
 export default App
