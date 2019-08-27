@@ -20,11 +20,13 @@ const ShoppingList = ({ shoppingList }) => {
         setListItemToEdit(item)
     }
 
-    const deleteListItem = item => {
+    const deleteListItem = id => {
+        let temp = shoppingListItems.filter(item => item.id !== id)
 
+        setShoppingListItems(temp)
     }
 
-    const toggleItem = id => {
+    const toggleListItem = id => {
         let temp = shoppingListItems.map(item => {
             if (item.id === id) {
                 // console.log(item.id, id)
@@ -41,7 +43,7 @@ const ShoppingList = ({ shoppingList }) => {
         <div className="shopping-list-container">
             <h4>Shopping List</h4>
             <div className="shopping-list-items-container">
-                {shoppingListItems.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} toggleItem={toggleItem} />
+                {shoppingListItems.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} toggleListItem={toggleListItem} deleteListItem={deleteListItem} />
                 )}
             </div>
 

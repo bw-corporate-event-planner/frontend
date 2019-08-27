@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, setListItemToEdit, toggleItem }) => {
+const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, setListItemToEdit, toggleListItem, deleteListItem }) => {
 
     const handleChange = e => {
         // console.log(e.target.name)
@@ -49,9 +49,9 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                             <p onClick={() => editListItem(listItem, listItem.cost, "cost")}> ${listItem.cost}</p>
                         </div>
                         <div className="item-buttons-container">
-                            <span>delete</span>
+                            <span onClick={() => deleteListItem(listItem.id)}>delete</span>
                             <span>edit</span>
-                            <span onClick={() => toggleItem(listItem.id)}>toggle</span>
+                            <span onClick={() => toggleListItem(listItem.id)}>toggle</span>
                         </div>
                     </div>
                 )
