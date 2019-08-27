@@ -46,7 +46,6 @@ const ShoppingList = ({ shoppingList }) => {
                 {shoppingListItems.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} toggleListItem={toggleListItem} deleteListItem={deleteListItem} />
                 )}
             </div>
-
         </div>
     )
 }
