@@ -29,7 +29,7 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                     <label>
                         <input
                             type="number"
-                            name="cost"
+                            name="item_cost"
                             value={listItemToEdit.item_cost}
                             onChange={handleChange}
                         />
