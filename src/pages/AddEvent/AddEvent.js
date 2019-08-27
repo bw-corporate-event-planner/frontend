@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './AddEvent.scss';
+
 // import DatePicker from 'react-datepicker';
 
 // let date = new Date();
@@ -39,7 +41,7 @@ const AddEvent = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    
+
     props.history.push('/event/1');
 
     console.log('the input', input);
@@ -56,7 +58,7 @@ const AddEvent = props => {
   console.log(input);
 
   return (
-    <>
+    <div className='formStyles'>
       <form onSubmit={handleSubmit}>
         <h2>Add Event</h2>
 
@@ -81,19 +83,19 @@ const AddEvent = props => {
           type='text'
           placeholder='Event Location'
         />
+        <label>Start date</label>
         <input
           name='start_date'
           value={input.start_date}
           onChange={handleChange}
           type='date'
-          placeholder='Start date'
         />
+        <label>End Date</label>
         <input
           name='end_date'
           value={input.end_date}
           onChange={handleChange}
           type='date'
-          placeholder='End Date'
         />
 
         {/* <DatePicker
@@ -114,10 +116,11 @@ const AddEvent = props => {
           value={input.total_budget}
           onChange={handleChange}
           type='text'
+          placeholder='Total Budget'
         />
         <button>Submit Event</button>
       </form>
-    </>
+    </div>
   );
 };
 export default AddEvent;
