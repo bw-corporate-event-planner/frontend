@@ -7,6 +7,7 @@ import Event from './pages/Event/scenes/Event'
 import LoginForm from './pages/Login/LoginForm';
 import styled from 'styled-components';
 
+
 function App() {
   return (
     <div>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" component={RegisterForm} />
         <Route path="/event/:id" component={Event} />
         <Route path="/addevent" component={AddEvent} />
+        
       </AppWrapper>
     </div>
   );

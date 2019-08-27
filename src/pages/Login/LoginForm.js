@@ -1,91 +1,120 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Field, withFormik } from 'formik';
-import axios from "axios";
+import React, { useEffect } from 'react';
+import { withFormik, Form as FormikForm, Field } from 'formik';
+import axios from 'axios';
 import * as Yup from 'yup';
-import {Paper} from '@material-ui/core';
 
-
-
-
-import {LoginStyles}  from './FormStyles';
-
-
-const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
-
-    const style = LoginStyles();
-
-    // hook keeps track of login information 
-    const [login, setLogin] = useState();
-
-    // update login if change has occured 
-    useEffect(() => {
-        if (status) {
-            setLogin([...login, status])
+const Form = ({ errors, touched, status, setUsers, values }) => {
+  useEffect( () =>
+    {
+        if(status)
+        {
+            setUsers(users => [...users, status])
         }
-    }, [status]); 
-
-    return(
-        <div className="master-container">
-            <Paper className={style.background}>
-                <h1>Sign In</h1>
-
-                <Form className={style.container}>
-                    
-                    {/* name */}
-                    <Field 
-                        type="text" 
-                        name="username" 
-                        placeholder="Userame"
-                        className={style.textField}
-                    />
-                    {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
-
-
-                    {/* password */}
-                    <Field 
-                        type="text" 
-                        name="password" 
-                        placeholder="Password" 
-                        className={style.textField}
-                    />
-                    {touched.name && errors.name && <p className="error">{errors.name}</p>}
-
-                    <button type="submit" className={style.button}>Submit</button>
-                </Form>
-            </Paper>
-        </div>
-    );
+    }, [status])
+  return (
+    <div>
+      <h1>Login Form</h1>
+      <FormikForm className='user-form'>
+        <label>
+          Username:
+          <Field type='text' name='username' />
+          {touched.username && errors.username && (
+            <p className='error'>{errors.username}</p>
+          )}
+        </label>
+        <label>
+          Name:
+          <Field type='text' name='name' />
+          {touched.name && errors.name && (
+            <p className='error'>{errors.name}</p>
+          )}
+        </label>
+        <label>
+          Category:
+          <Field component='select' name='category'>
+            <option>Select a Category</option>
+            <option value='Office Party'>Office Party</option>
+            <option value='Outdoors Pary'>Outdoors Party</option>
+            <option value='Small Party'>Small Party</option>
+            <option value='Big Party'>Big Party</option>
+          </Field>
+          {touched.category && errors.category && (
+            <p className='error'>{errors.category}</p>
+          )}
+        </label>
+        <label>
+          Email:
+          <Field type='email' name='email' />
+          {touched.email && errors.email && (
+            <p className='error'>{errors.email}</p>
+          )}
+        </label>
+        <label>
+          Password:
+          <Field type='password' name='password' />
+          {touched.password && errors.password && (
+            <p className='error'>{errors.password}</p>
+          )}
+        </label>
+        <label>
+          Terms of Service:
+          <Field
+            type='checkbox'
+            name='termOfService'
+            checked={values.termOfService}
+          />
+          {touched.termOfService && errors.termOfService && (
+            <p className='error'>{errors.termOfService}</p>
+          )}
+        </label>
+        <button type='submit' className='user-form-submit'>
+          Submit
+        </button>
+      </FormikForm>
+    </div>
+  );
 };
 
-// using formik 
-const FormikLoginForm = withFormik({
-    
-    // making sure each prop has a default value if given value is undefined 
-    mapPropsToValues({ username, password }) {
-      return {
-        username: username || "CorporateEventPlanner",
-        password: password || "success"
-      };
-    },
-    
-    //use yup to enforce input requirements 
-    validationSchema: Yup.object().shape({
-        username: Yup
-        .string()
-        .required("Please Enter Your Name"),
-        password: Yup
-        .string()
-        .required("Please Enter Your Password"),
-    }),
-    
-    // update values and set status 
-    handleSubmit(values, formik) {
-        console.log(formik);
-    
+const FormikUserForm = withFormik({
+  mapPropsToValues(values) {
+    return {
+      username: values.username || '',
+      name: values.name || '',
+      category: values.category || '',
+      email: values.email || '',
+      password: values.password || '',
+      termOfService: values.termOfService || false,
+    };
+  },
+  //VALIDATION SCHEMA 
+  validationSchema: Yup.object().shape({
+    username: Yup.string()
+      .lowercase()
+      .required('Username is a required field'),
+    name: Yup.string()
+      .lowercase()
+      .required('Name is a required field'),
+    category: Yup.string().required('Category is a required field'),
+    email: Yup.string()
+      .lowercase()
+      .email('Field needs to be a valid e-mail')
+      .required('E-mail is a required field'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 6 characters and 1 number')
+      .required('Password is a required field'),
+    termOfService: Yup.bool()
+      .oneOf([true], 'Terms of Service must be checked')
+      .required(),
+  }),
+  //END OF VALIDATION SCHEMA
+  handleSubmit(values, { setStatus, resetForm }) {
+    // console.log(values);
+    axios.post('https://reqres.in/api/users', values).then(res => {
+      console.log('HTTP POST response: ', res);
+      setStatus(res.data);
+      resetForm();
+    });
+  },
+})(Form);
 
-        // resetForm(); 
-    }
-
-})(LoginForm); 
-    
-export default FormikLoginForm;
+export default FormikUserForm;
