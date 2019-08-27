@@ -39,6 +39,7 @@ const AddEvent = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    
     props.history.push('/event/1');
 
     console.log('the input', input);
