@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import ShoppingListForm from './ShoppingListForm'
 import ShoppingListItem from './ShoppingListItem'
 
 const initialListItem = {
-    id: "",
+    id: Date.now(),
     event_id: "",
     item_name: "",
-    item_cost: null,
+    item_cost: 0,
     item_complete: false,
     // item_vendor: ""
 }
@@ -16,7 +17,7 @@ const ShoppingList = ({ shoppingList }) => {
     const [editing, setEditing] = useState(false)
     const [listItemToEdit, setListItemToEdit] = useState(initialListItem)
 
-    const editListItem = (item, item_prop, key_name) => {
+    const editListItem = item => {
         // console.log("item clicked", item, item_prop, key_name)
         setEditing(true)
         setListItemToEdit(item)
@@ -24,7 +25,6 @@ const ShoppingList = ({ shoppingList }) => {
 
     const deleteListItem = id => {
         let temp = shoppingListItems.filter(item => item.id !== id)
-
         setShoppingListItems(temp)
     }
 
@@ -40,10 +40,16 @@ const ShoppingList = ({ shoppingList }) => {
         console.log(shoppingListItems)
     }
 
+    const addListItem = item => {
+        let temp = [...shoppingListItems, item]
+        console.log(temp)
+        setShoppingListItems(temp)
+    }
 
     return (
         <div className="shopping-list-container">
             <h4>Shopping List</h4>
+            <ShoppingListForm addListItem={addListItem} initialListItem={initialListItem}/>
             <div className="shopping-list-items-container">
                 {shoppingListItems.map(listItem => <ShoppingListItem key={listItem.id} editing={editing} listItemToEdit={listItemToEdit} setListItemToEdit={setListItemToEdit} editListItem={editListItem} listItem={listItem} toggleListItem={toggleListItem} deleteListItem={deleteListItem} />
                 )}
