@@ -2,23 +2,17 @@ import React, { useState, useEffect } from "react";
 import { withFormik, Form as FormikForm, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import User from './user'
+
 
 
 const OnboardForm = ({ values, touched, errors, status }) => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(()=>{
-    if(status){
-        setUsers([...users, status])
-    }
-  },[users, status])
+  
 
   return (
 <>
           <FormikForm>
           {/* {console.log('USERS in RETURN', users)} */}
-          <Field type="text" name="name" placeholder="Name" />
+          <Field type="text" name="name" placeholder="User Name" />
           {touched.name && errors.name && <p className="error">{errors.name}</p>}
     
           <Field type="text" name="email" placeholder="Email" />
@@ -37,16 +31,15 @@ const OnboardForm = ({ values, touched, errors, status }) => {
     
           <button type="submit">Submit!</button>
         </FormikForm>
-        {users.map((user)=><User user_name={user.name}/>)}
-
+        
 </>   
   );
 };
 
 const FormikOnboardForm = withFormik({
-  mapPropsToValues({ name, email, password, tos }) {
+  mapPropsToValues({ username, email, password, tos }) {
     return {
-      name: name || "",
+      username: username || "",
       email: email || "",
       password: password || "",
       tos: tos || false
@@ -54,7 +47,7 @@ const FormikOnboardForm = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("Name is a required field"),
+    username: Yup.string().required("userName is a required field"),
     email: Yup.string()
       .email("Input a valid email")
       .required("Email is a required field"),
@@ -67,13 +60,13 @@ const FormikOnboardForm = withFormik({
   handleSubmit(values, { setStatus } ) {
     // console.log('Values in handleSubmit', values);
     axios
-      .post("https://reqres.in/api/login", values)
+      .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
       .then(response => {
-        // console.log("RESPONSE", response);
+        console.log("RESPONSE", response);
         setStatus(response.data)
       })
       .catch(error => {
-        // console.log("ERROR", error);
+        console.log("ERROR", error);
       });
   }
 })(OnboardForm);
