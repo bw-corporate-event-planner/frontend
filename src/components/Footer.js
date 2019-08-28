@@ -17,6 +17,8 @@ export default function Footer(){
 
 const FooterWrapper = styled.div`
     display: flex;
+    border-radius: 50% 50% 0 0;
+    box-shadow: 0 8px 6px -6px lightgrey;
     flex-direction: column;
     background: #333;
     padding: 2.5rem;

@@ -22,9 +22,7 @@
     justify-content: center;
     padding: 30px;
     border-radius: 5px;
-    background-color: #186681;
-    color: white;
-    margin-bottom: 30px;
+    // background-color: rgb(0, 140, 255);
   }
   input {
     display: flex;
@@ -43,7 +41,12 @@
     width: 80%;
   }
   button {
+<<<<<<< HEAD
     background: #186681;
+=======
+    // background: #003459;
+    background-color: #14586b;
+>>>>>>> af5e9ceb051b02a34d91219d1738cdebb84165f1
     text-align: center;
     padding: 10px;
     margin-top: 10px;
@@ -51,8 +54,11 @@
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+    outline: none;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
     text-transform: uppercase;
     margin-bottom: 10px;
+    font-weight: 500;
   }
   h2 {
     font-family: 'Lobster', sans-serif;

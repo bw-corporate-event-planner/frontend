@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Event from "../../Event/scenes/Event";
 import { Link } from "react-router-dom";
 import { allEvents } from "../../../services/data";
+import { getEvents } from "../../../services/api";
 
 const EventsList = props => {
   // console.log(allEvents)
@@ -11,8 +12,17 @@ const EventsList = props => {
 
   const handleSearch = e => {
     setSearchText(e.target.value); // on next rerender
-    console.log(searchText);
+    // console.log(searchText);
   };
+
+  useEffect(() => {
+    getEvents()
+      .then(res => {
+        console.log(res.data);
+        setEventsList(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   // useEffect(() => {
   //     console.log(searchText)
