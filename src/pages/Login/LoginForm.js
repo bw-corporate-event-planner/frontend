@@ -1,74 +1,86 @@
-import React, { useState, useEffect } from "react";
-import { withFormik, Form as FormikForm, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { Form, Field, withFormik } from 'formik';
+import * as Yup from 'yup';
+import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
+// axios post action 
 
+const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 
+  // hook keeps track of login information 
+  const [login, setLogin] = useState({});
 
-const OnboardForm = ({ values, touched, errors, status }) => {
-  
+  // update login if change has occured 
+  useEffect(() => {
+      if (status) {
+          setLogin(user => ({...login, user}))
+      }
+  }, [status]); 
 
-  return (
-<>
-          <FormikForm>
-          {/* {console.log('USERS in RETURN', users)} */}
-          <Field type="text" name="name" placeholder="User Name" />
-          {touched.name && errors.name && <p className="error">{errors.name}</p>}
-    
-          <Field type="text" name="email" placeholder="Email" />
-          {touched.email && errors.email && <p className="error">{errors.email}</p>}
-    
-          <Field type="password" name="password" placeholder="Password" />
-          {touched.password && errors.password && (
-            <p className="error">{errors.password}</p>
-          )}
-    
-          <label>
-            I have read and agree to the Terms of Service
-            <Field type="checkbox" name="tos" checked={values.tos} />
-          </label>
-          {touched.tos && errors.tos && <p className="error">{errors.tos}</p>}
-    
-          <button type="submit">Submit!</button>
-        </FormikForm>
-        
-</>   
+  return(
+      <div className="master-container">
+          <Paper >
+              <h1>Sign In</h1>
+              <Form >
+                  
+                  {/* name */}
+                  <Field 
+                      type="text" 
+                      name="username" 
+                      placeholder="Userame"  
+                  />
+                  {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
+
+                  {/* password */}
+                  <Field 
+                      type="text" 
+                      name="password" 
+                      placeholder="Password" 
+                     
+                  />
+                  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                  <button type="submit">Submit</button>
+              </Form>
+          </Paper>
+      </div>
   );
 };
-
-const FormikOnboardForm = withFormik({
-  mapPropsToValues({ username, email, password, tos }) {
+// using formik 
+const FormikLoginForm = withFormik({
+  
+  // making sure each prop has a default value if given value is undefined 
+  mapPropsToValues({ username, password, email }) {
     return {
       username: username || "",
-      email: email || "",
-      password: password || "",
-      tos: tos || false
+      password: password || ""
     };
   },
-
+  
+  // use yup to enforce input requirements 
   validationSchema: Yup.object().shape({
-    username: Yup.string().required("userName is a required field"),
-    email: Yup.string()
-      .email("Input a valid email")
-      .required("Email is a required field"),
-    password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .required("Password is a required field"),
-    tos: Yup.boolean().oneOf([true], "Must accept Terms of Service")
+      username: Yup
+      .string()
+      .required("Please Enter Your Name"),
+      password: Yup
+      .string()
+      .required("Please Enter Your Password"),
   }),
+  
+  // update values and set status 
+  handleSubmit(values, { resetForm, props, setStatus }) {
+      console.log("values, props", values, props)
 
-  handleSubmit(values, { setStatus } ) {
-    // console.log('Values in handleSubmit', values);
-    axios
-      .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
-      .then(response => {
-        console.log("RESPONSE", response);
-        setStatus(response.data)
-      })
-      .catch(error => {
-        console.log("ERROR", error);
-      });
+      axios
+        .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
+        .then(response => {
+          console.log(response)
+          console.log('we in here')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      resetForm(); 
   }
-})(OnboardForm);
+})(LoginForm); // currying functions
 
-export default FormikOnboardForm;
+export default FormikLoginForm
