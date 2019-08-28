@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import './AddEvent.scss';
-
-// import DatePicker from 'react-datepicker';
-
-// let date = new Date();
-// date.setDate(date.getDate() + 1);
-// const minDateValue = date.toISOString();
 
 const AddEvent = props => {
   console.log(props);
-  // const [event, setEvent] = useState([]);
+  const [events, setEvents] = useState([]);
 
   const [input, setInput] = useState({
-    title: '',
-    description: '',
-    location: '',
-    start_date: '',
-    end_date: '',
-    total_budget: '',
+    event_title: '',
+    event_description: '',
+    event_location: '',
+    event_start: '',
+    event_end: '',
+    event_budget: '',
   });
+
+  useEffect(() => {
+    // addEvent();
+  }, []);
 
   const handleChange = e => {
     setInput({
@@ -29,29 +29,22 @@ const AddEvent = props => {
 
   console.log(input);
 
-  // const handleChangeStartDate = date => {
-  //   console.log('datePicker', date);
-  //   setEvent({ ...input, start_date: date });
-  // };
-
-  // const handleChangeEndDate = date => {
-  //   console.log('datePicker', date);
-  //   setEvent({ ...input, end_date: date });
-  // };
-
   const handleSubmit = e => {
     e.preventDefault();
+    // axios.post(http://, input)
+    // .then(res => setEvents(res.data))
+    // .catch(err => console.log(err))
 
-    props.history.push('/event/1');
+    props.history.push('/event/:id');
 
     console.log('the input', input);
     setInput({
-      title: '',
-      description: '',
-      location: '',
-      start_date: '',
-      end_date: '',
-      total_budget: '',
+      event_title: '',
+      event_description: '',
+      event_location: '',
+      event_start: '',
+      event_end: '',
+      event_budget: '',
     });
   };
 
@@ -63,61 +56,49 @@ const AddEvent = props => {
         <h2>Add Event</h2>
 
         <input
-          name='title'
-          value={input.title}
+          name='event_title'
+          value={input.event_title}
           onChange={handleChange}
           type='text'
           placeholder='Event Title'
         />
         <input
-          name='description'
-          value={input.description}
+          name='event_description'
+          value={input.event_description}
           onChange={handleChange}
           type='text'
           placeholder='Event Description'
         />
         <input
-          name='location'
-          value={input.location}
+          name='event_location'
+          value={input.event_location}
           onChange={handleChange}
           type='text'
           placeholder='Event Location'
         />
         <label>Start date</label>
         <input
-          name='start_date'
-          value={input.start_date}
+          name='event_start'
+          value={input.event_start}
           onChange={handleChange}
           type='date'
         />
-        <label>End Date</label>
+        <label>End date</label>
         <input
-          name='end_date'
-          value={input.end_date}
+          name='event_end'
+          value={input.event_end}
           onChange={handleChange}
           type='date'
         />
 
-        {/* <DatePicker
-          selected={input.start_date}
-          onChange={handleChangeStartDate}
-          minDate={minDateValue}
-        />
-        <div>
-          <DatePicker
-            selected={input.end_date}
-            onChange={handleChangeEndDate}
-            minDate={minDateValue}
-          />
-        </div> */}
-
         <input
-          name='total_budget'
-          value={input.total_budget}
+          name='event_budget'
+          value={input.event_budget}
           onChange={handleChange}
-          type='text'
+          type='number'
           placeholder='Total Budget'
         />
+
         <button>Submit Event</button>
       </form>
     </div>
