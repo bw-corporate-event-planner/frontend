@@ -7,11 +7,11 @@ const Expenditures = props => {
 
   useEffect(() => {
     setTimeout(() => {
-      setPercent(Math.floor((100 * totalCost) / budget));
+      setPercent(Math.floor((100 * purchasedItemsCost) / budget));
     }, 1000);
     // setPercent(Math.floor((100 * totalCost) / budget));
   }, [totalCost]);
-  const percentOfBudget = Math.floor((100 * totalCost) / budget);
+  const percentOfBudget = Math.floor((100 * purchasedItemsCost) / budget);
 
   return (
     <div className="expenditures">

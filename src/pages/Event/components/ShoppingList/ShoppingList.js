@@ -69,7 +69,7 @@ const ShoppingList = ({ shoppingList, budget }) => {
 
   return (
     <div className="shopping-list-container">
-      <h4>Shopping List</h4>
+      <h4>Budget Items</h4>
       <Expenditures
         totalCost={totalCost}
         purchasedItemsCost={purchasedItemsCost}

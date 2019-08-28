@@ -11,7 +11,6 @@ function App() {
   return (
     <div>
       <HeaderNav />
-      <h1>Corporate Event Planner</h1>
       <Route exact path="/" component={EventsList} />
       <Route path="/login" component={LoginForm} />
       <Route path="/register" component={RegisterForm} />

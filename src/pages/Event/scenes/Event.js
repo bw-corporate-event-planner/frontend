@@ -12,12 +12,17 @@ const Event = props => {
 
   const startDate = moment(event.event_start).format("MMMM Do, YYYY");
   const endDate = moment(event.event_end).format("MMMM Do, YYYY");
+  const timeTilEvent = moment(event.event_start).fromNow();
 
-  console.log(event);
+  console.log(timeTilEvent);
 
   return (
-    <div>
-      <h3>{event.name}</h3>
+    <div className="event-page-card">
+      <h3>{event.event_title}</h3>
+      <div className="event-buttons-container">
+        <span>Edit event</span>
+        <span>Delete event</span>
+      </div>
       <p>Description: {event.event_description}</p>
       <p>
         From {startDate} to {endDate}
@@ -27,10 +32,6 @@ const Event = props => {
         shoppingList={event.shopping_list}
         budget={event.event_budget}
       />
-      <div className="event-buttons-container">
-        <span>Edit event</span>
-        <span>Delete event</span>
-      </div>
     </div>
   );
 };
