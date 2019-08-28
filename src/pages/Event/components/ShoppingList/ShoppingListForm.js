@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 
-const ShoppingListForm = ({ addListItem, initialListItem }) => {
-  const [input, setInput] = useState(initialListItem);
+const initialEditingListItem = {
+  event_id: "",
+  item_name: "",
+  item_cost: 0,
+  item_complete: false
+  // item_vendor: ""
+};
+
+const ShoppingListForm = ({ addListItem }) => {
+  const [input, setInput] = useState(initialEditingListItem);
 
   const handleChange = e => {
     const value =
@@ -19,7 +27,7 @@ const ShoppingListForm = ({ addListItem, initialListItem }) => {
     e.preventDefault();
     // post request to shoppingListItems
     addListItem(input);
-    setInput(initialListItem);
+    setInput(initialEditingListItem);
   };
 
   return (

@@ -5,7 +5,7 @@ import Expenditures from "../Expenditures/Expenditures";
 // import { Progress } from "antd";
 
 const initialListItem = {
-  id: null,
+  id: -1,
   event_id: "",
   item_name: "",
   item_cost: 0,
@@ -40,7 +40,7 @@ const ShoppingList = ({ shoppingList, budget }) => {
   }, [shoppingListItems]);
 
   const editListItem = item => {
-    // console.log("item clicked", item, item_prop, key_name)
+    console.log("item clicked", item);
     setEditing(true);
     setListItemToEdit(item);
   };
