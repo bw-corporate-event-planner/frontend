@@ -18,7 +18,7 @@ const Expenditures = props => {
       <div className="progress-bar-container">
         <Progress
           type="circle"
-          width="180px"
+          // width="180px"
           strokeWidth="10"
           strokeColor={{
             "0%": "#87d068",
