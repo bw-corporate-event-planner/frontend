@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
-
-import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import './RegisterForm.scss';
 // axios post action 
@@ -12,7 +10,7 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
 
   // hook keeps track of login information 
   const [user, setUser] = useState({});
-  
+
   // update login if change has occured 
   useEffect(() => {
       if (status) {
@@ -22,8 +20,8 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
 
   return(
       <div className="form-container-register">
-          <Paper >
-              <h1>Sign In</h1>
+          {/* <Paper > */}
+              <h1>Sign Up</h1>
               <Form>
                   
               <div className="field">
@@ -31,7 +29,7 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                   <Field 
                       type="text" 
                       name="username" 
-                      placeholder="Userame"  
+                      placeholder="Username"  
                   />
                   {touched.username && errors.username && ( <p className="error">{errors.username}</p> )}
                   </div>
@@ -55,7 +53,6 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                   />
                   {touched.role && errors.role && ( <p className="error">{errors.role}</p> )}
                   </div>
->>>>>>> 5096fb13abd711e7940d7baa3ac1da02b2526574
 
 <div className="field">
                   {/* password */}
@@ -68,7 +65,7 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                   </div>
                   <button type="submit">Submit</button>
               </Form>
-          </Paper>
+          {/* </Paper> */}
       </div>
   );
 };

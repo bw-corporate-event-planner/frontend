@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { withFormik, Form as FormikForm, Field } from 'formik';
+import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
+
+
 import './LoginForm.scss';
 
 // axios post action 
@@ -21,8 +23,8 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 
   return(
       <div className="form-container">
-          <Paper >
-              <h1>Sign In</h1>
+          {/* <Paper > */}
+              <h1>Log In</h1>
               <Form >
                   
 			  <div className="field">
@@ -48,7 +50,7 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 				  
                   <button type="submit">Submit</button>
               </Form>
-          </Paper>
+          {/* </Paper> */}
       </div>
   );
 };
