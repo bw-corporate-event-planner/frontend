@@ -70,14 +70,14 @@ const FormikLoginForm = withFormik({
   handleSubmit(values, { resetForm, props, setStatus }) {
       console.log("values, props", values, props)
 
-      // axios
-      //   .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
-      //   .then(response => {
-      //     console.log(response)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
+      axios
+        .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
       resetForm(); 
   }
 })(LoginForm); // currying functions
