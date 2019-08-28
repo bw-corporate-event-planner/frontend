@@ -74,6 +74,7 @@ const FormikLoginForm = withFormik({
         .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
         .then(response => {
           console.log(response)
+          console.log('we in here')
         })
         .catch(error => {
           console.log(error)
