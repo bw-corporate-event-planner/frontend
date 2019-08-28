@@ -17,15 +17,27 @@ const ShoppingList = ({ shoppingList, budget }) => {
   const [shoppingListItems, setShoppingListItems] = useState(shoppingList);
   const [editing, setEditing] = useState(false);
   const [listItemToEdit, setListItemToEdit] = useState(initialListItem);
-  const [totalCost, setTotalCost] = useState(null);
+  const [totalCost, setTotalCost] = useState(0);
+  const [purchasedItemsCost, setPurchasedItemsCost] = useState(0);
 
+  // ALL ITEMS COST
   useEffect(() => {
-    let unboughtItemsCost = shoppingListItems
-      .filter(item => !item.item_complete)
-      .reduce((acc, item) => acc + Number(item.item_cost), 0);
-    setTotalCost(unboughtItemsCost);
+    let temp = shoppingListItems.reduce(
+      (acc, item) => acc + Number(item.item_cost),
+      0
+    );
+    setTotalCost(temp);
     console.log(totalCost);
-  }, [shoppingListItems.length]);
+  }, [shoppingListItems]);
+
+  // PURCHASED ITEMS COST
+  useEffect(() => {
+    let temp = shoppingListItems
+      .filter(item => item.item_complete)
+      .reduce((acc, item) => acc + Number(item.item_cost), 0);
+    setPurchasedItemsCost(temp);
+    console.log(totalCost);
+  }, [shoppingListItems]);
 
   const editListItem = item => {
     // console.log("item clicked", item, item_prop, key_name)
@@ -58,7 +70,11 @@ const ShoppingList = ({ shoppingList, budget }) => {
   return (
     <div className="shopping-list-container">
       <h4>Shopping List</h4>
-      <Expenditures totalCost={totalCost} budget={budget} />
+      <Expenditures
+        totalCost={totalCost}
+        purchasedItemsCost={purchasedItemsCost}
+        budget={budget}
+      />
       <ShoppingListForm
         addListItem={addListItem}
         initialListItem={initialListItem}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Icon, Statistic, Tooltip, Progress, Spin } from "antd";
 
 const Expenditures = props => {
-  const { totalCost, budget } = props;
+  const { totalCost, purchasedItemsCost, budget } = props;
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Expenditures = props => {
             <Spin />
           ) : (
             <Statistic
-              title="Shopping List Total"
+              title="All Items Cost"
               value={totalCost}
               precision={2}
               valueStyle={{ color: "#87D068" }}
@@ -47,9 +47,9 @@ const Expenditures = props => {
           ) : (
             <Statistic
               title="Purchased Items Total"
-              value={totalCost}
+              value={purchasedItemsCost}
               precision={2}
-              valueStyle={{ color: "#87D068" }}
+              valueStyle={{ color: "#EF9F1F" }}
               prefix={<Icon type="dollar" />}
             />
           )}
@@ -60,7 +60,7 @@ const Expenditures = props => {
           ) : (
             <Statistic
               title="Budget Remaining"
-              value={budget - totalCost}
+              value={budget - purchasedItemsCost}
               precision={2}
               valueStyle={{ color: "#0F8FE8" }}
               prefix={<Icon type="dollar" />}
