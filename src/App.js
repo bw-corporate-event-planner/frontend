@@ -7,7 +7,6 @@ import Event from './pages/Event/scenes/Event';
 import LoginForm from './pages/Login/LoginForm';
 import HeaderNav from './components/HeaderNav/HeaderNav';
 
-
 function App() {
   return (
     <div>

@@ -52,29 +52,28 @@ const AddEvent = props => {
 
   return (
     <div className='formStyles'>
+      <h2>Add Event</h2>
       <form onSubmit={handleSubmit}>
-        <h2>Add Event</h2>
-
+        <label>Event Title</label>
         <input
           name='event_title'
           value={input.event_title}
           onChange={handleChange}
           type='text'
-          placeholder='Event Title'
         />
+        <label>Event Description</label>
         <input
           name='event_description'
           value={input.event_description}
           onChange={handleChange}
           type='text'
-          placeholder='Event Description'
         />
+        <label>Event Location</label>
         <input
           name='event_location'
           value={input.event_location}
           onChange={handleChange}
           type='text'
-          placeholder='Event Location'
         />
         <label>Start date</label>
         <input
@@ -90,13 +89,12 @@ const AddEvent = props => {
           onChange={handleChange}
           type='date'
         />
-
+        <label>Total Budget</label>
         <input
           name='event_budget'
           value={input.event_budget}
           onChange={handleChange}
           type='number'
-          placeholder='Total Budget'
         />
 
         <button>Submit Event</button>
