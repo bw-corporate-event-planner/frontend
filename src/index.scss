@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
 
 $gray-blue: #8693ab;
 $pale-aqua: #bdd4e7;
@@ -15,13 +16,14 @@ body,
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #36393f;
 }
 
 // import scss components in logical order
 
-@import "./components/HeaderNav/HeaderNav.scss";
-@import "./pages/Event/components/ShoppingList/ShoppingList.scss";
-@import "./pages/EventsList/scenes/EventsList.scss";
-@import "./pages/Event/scenes/Event.scss";
+@import './components/HeaderNav/HeaderNav.scss';
+@import './pages/Event/components/ShoppingList/ShoppingList.scss';
+@import './pages/EventsList/scenes/EventsList.scss';
+@import './pages/Event/scenes/Event.scss';
+@import './pages/AddEvent/AddEvent.scss';
