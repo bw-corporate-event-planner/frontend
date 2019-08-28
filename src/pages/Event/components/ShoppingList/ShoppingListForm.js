@@ -32,6 +32,7 @@ const ShoppingListForm = ({addListItem, initialListItem}) => {
                     type='text'
                     placeholder='item name'
                 />
+                <label>$
                 <input
                     name='item_cost'
                     value={input.item_cost}
@@ -39,6 +40,8 @@ const ShoppingListForm = ({addListItem, initialListItem}) => {
                     type='number'
                     placeholder='item cost'
                 />
+                <span>.00</span>
+                </label>
                 <label>
                     <input
                         name='item_complete'

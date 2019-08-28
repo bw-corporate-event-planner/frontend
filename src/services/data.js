@@ -36,6 +36,48 @@ export const allEvents = [
             item_name: "alcohol",
             item_cost: 600,
             item_complete: false
+        }, {id: 40,
+            event_id: 2,
+            item_name: "alcohol",
+            item_cost: 600,
+            item_complete: false
+        }]
+    },
+    {
+        id: 3,
+        event_title: "Welcome Interns Party",
+        event_start: "December 20, 2019",
+        event_end: "December 21, 2019",
+        event_budget: 1200,
+        event_description: "Party to welcome interns",
+        event_location: "the hotel",
+        shopping_list: [{
+            id: 30,
+            event_id: 2,
+            item_name: "alcohol",
+            item_cost: 600,
+            item_complete: false
+        }, {id: 40,
+            event_id: 2,
+            item_name: "alcohol",
+            item_cost: 600,
+            item_complete: false
+        }]
+    },
+    {
+        id: 4,
+        event_title: "Welcome Interns Party",
+        event_start: "December 20, 2019",
+        event_end: "December 21, 2019",
+        event_budget: 1200,
+        event_description: "Party to welcome interns",
+        event_location: "the hotel",
+        shopping_list: [{
+            id: 50,
+            event_id: 4,
+            item_name: "alcohol",
+            item_cost: 600,
+            item_complete: false
         }]
     }
 ]

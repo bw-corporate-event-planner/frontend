@@ -26,18 +26,19 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                             onChange={handleChange}
                         />
                     </label>
-                    <label>
+                    <label>$
                         <input
                             type="number"
                             name="item_cost"
                             value={listItemToEdit.item_cost}
                             onChange={handleChange}
                         />
+                        <span>.00</span>
                     </label>
                     <div className="item-buttons-container">
-                        <span>delete</span>
-                        <span>edit</span>
+                        <span onClick={()=> console.log("saved")}>save edit</span>
                         <span>toggle</span>
+                        <span>delete</span>
                     </div>
                 </form>
             ) : (
@@ -49,9 +50,9 @@ const ShoppingListItem = ({ listItem, editListItem, editing, listItemToEdit, set
                             <p onClick={() => editListItem(listItem, listItem.item_cost, "cost")}> ${listItem.item_cost}</p>
                         </div>
                         <div className="item-buttons-container">
-                            <span onClick={() => deleteListItem(listItem.id)}>delete</span>
                             <span onClick={() => editListItem(listItem)}>edit</span>
                             <span onClick={() => toggleListItem(listItem.id)}>toggle</span>
+                            <span onClick={() => deleteListItem(listItem.id)}>delete</span>
                         </div>
                     </div>
                 )
