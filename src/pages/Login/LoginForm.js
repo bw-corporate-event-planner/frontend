@@ -1,91 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Field, withFormik } from 'formik';
+import React, { useState, useEffect } from "react";
+import { withFormik, Form as FormikForm, Field } from "formik";
+import * as Yup from "yup";
 import axios from "axios";
-import * as Yup from 'yup';
-import {Paper} from '@material-ui/core';
 
 
 
+const OnboardForm = ({ values, touched, errors, status }) => {
+  
 
-import {LoginStyles}  from './FormStyles';
-
-
-const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
-
-    const style = LoginStyles();
-
-    // hook keeps track of login information 
-    const [login, setLogin] = useState();
-
-    // update login if change has occured 
-    useEffect(() => {
-        if (status) {
-            setLogin([...login, status])
-        }
-    }, [status]); 
-
-    return(
-        <div className="master-container">
-            <Paper className={style.background}>
-                <h1>Sign In</h1>
-
-                <Form className={style.container}>
-                    
-                    {/* name */}
-                    <Field 
-                        type="text" 
-                        name="username" 
-                        placeholder="Userame"
-                        className={style.textField}
-                    />
-                    {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
-
-
-                    {/* password */}
-                    <Field 
-                        type="text" 
-                        name="password" 
-                        placeholder="Password" 
-                        className={style.textField}
-                    />
-                    {touched.name && errors.name && <p className="error">{errors.name}</p>}
-
-                    <button type="submit" className={style.button}>Submit</button>
-                </Form>
-            </Paper>
-        </div>
-    );
+  return (
+<>
+          <FormikForm>
+          {/* {console.log('USERS in RETURN', users)} */}
+          <Field type="text" name="name" placeholder="User Name" />
+          {touched.name && errors.name && <p className="error">{errors.name}</p>}
+    
+          <Field type="text" name="email" placeholder="Email" />
+          {touched.email && errors.email && <p className="error">{errors.email}</p>}
+    
+          <Field type="password" name="password" placeholder="Password" />
+          {touched.password && errors.password && (
+            <p className="error">{errors.password}</p>
+          )}
+    
+          <label>
+            I have read and agree to the Terms of Service
+            <Field type="checkbox" name="tos" checked={values.tos} />
+          </label>
+          {touched.tos && errors.tos && <p className="error">{errors.tos}</p>}
+    
+          <button type="submit">Submit!</button>
+        </FormikForm>
+        
+</>   
+  );
 };
 
-// using formik 
-const FormikLoginForm = withFormik({
-    
-    // making sure each prop has a default value if given value is undefined 
-    mapPropsToValues({ username, password }) {
-      return {
-        username: username || "CorporateEventPlanner",
-        password: password || "success"
-      };
-    },
-    
-    //use yup to enforce input requirements 
-    validationSchema: Yup.object().shape({
-        username: Yup
-        .string()
-        .required("Please Enter Your Name"),
-        password: Yup
-        .string()
-        .required("Please Enter Your Password"),
-    }),
-    
-    // update values and set status 
-    handleSubmit(values, formik) {
-        console.log(formik);
-    
+const FormikOnboardForm = withFormik({
+  mapPropsToValues({ username, email, password, tos }) {
+    return {
+      username: username || "",
+      email: email || "",
+      password: password || "",
+      tos: tos || false
+    };
+  },
 
-        // resetForm(); 
-    }
+  validationSchema: Yup.object().shape({
+    username: Yup.string().required("userName is a required field"),
+    email: Yup.string()
+      .email("Input a valid email")
+      .required("Email is a required field"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters")
+      .required("Password is a required field"),
+    tos: Yup.boolean().oneOf([true], "Must accept Terms of Service")
+  }),
 
-})(LoginForm); 
-    
-export default FormikLoginForm;
+  handleSubmit(values, { setStatus } ) {
+    // console.log('Values in handleSubmit', values);
+    axios
+      .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
+      .then(response => {
+        console.log("RESPONSE", response);
+        setStatus(response.data)
+      })
+      .catch(error => {
+        console.log("ERROR", error);
+      });
+  }
+})(OnboardForm);
+
+export default FormikOnboardForm;
