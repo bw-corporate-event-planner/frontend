@@ -1,8 +1,64 @@
 .shopping-list-container {
-  width: 60%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 5px 6px -6px $raisin-black;
+  border-radius: 5px;
+  padding: 2rem;
+  background-color: lighten($columbia-blue, 11%);
+
+  h4 {
+    margin: 0 auto 10px;
+  }
+
+  .expenditures {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .progress-bar-container {
+      margin-right: 20px;
+    }
+
+    .budget-stats {
+      display: flex;
+      flex-direction: column;
+      margin-left: 50px;
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        padding: 5px;
+        height: 80px;
+        width: 240px;
+        margin: 10px;
+        border: none;
+      }
+    }
+  }
+
+  .add-item-form {
+    background-color: darken($columbia-blue, 10%);
+    // background-color: lighten($gray-blue, 20%);
+    color: #f9f9f9;
+    padding: 0px 20px;
+
+    input {
+      border-bottom: 2px solid #f9f9f9;
+      font-size: 1.2rem;
+
+      &::placeholder {
+        color: #f9f9f9;
+      }
+    }
+
+    input:nth-last-child(1) {
+      width: 20px;
+    }
+  }
 
   .shopping-list-items-container {
     width: 100%;
@@ -13,26 +69,29 @@
   form,
   .item-container,
   .item-container-completed {
-    width: 100%;
-    height: 70px;
-    padding: 5px;
+    width: 90%;
+    height: 60px;
+    padding: 2px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-    margin: 10px;
+    margin: 15px auto;
+    box-shadow: 0 8px 6px -6px $columbia-blue;
+    border-radius: 50px;
+    background-color: #f9f9f9;
 
     .item-text-container,
     input {
       width: 8rem;
       font-size: 1rem;
       text-align: left;
+      background-color: transparent;
     }
 
     input {
-      font-style: italic;
       border: none;
-      border-bottom: 2px solid $columbia-blue;
+      border-bottom: 2px solid darken($columbia-blue, 10%);
       font-family: "Montserrat", sans-serif;
       text-align: left;
       padding: 5px;
@@ -46,7 +105,7 @@
   }
 
   .item-buttons-container {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
 
     span {
       margin: 10px;
