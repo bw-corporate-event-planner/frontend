@@ -1,57 +1,120 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
-import axios from 'axios';
+
+import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
+import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 import './RegisterForm.scss';
+// axios post action 
 
-const RegistrationForm = ({ errors, touched, values, status }) => {
+const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 
-	return (
-		<div className="form-container-register">
-			<h2>Please Fill In Fields</h2>
-			<Form>
-				<div className="field">
-					<Field type="text" name="firstname" placeholder="First Name*" />
-					{touched.firstname && errors.firstname && <p className="firstname-login">{errors.firstname}</p>}
-				</div>
-				<div className="field">
-					<Field type="text" name="middlename" placeholder="Middle Name (Optional)*" />
-				</div>
-				<div className="field">
-					<Field type="text" name="lastname" placeholder="Last Name*" />
-					{touched.lastname && errors.lastname && <p className="lastname-login">{errors.lastname}</p>}
-				</div>
-				<div className="field">
-					<Field type="text" name="email" placeholder="Email*" />
-					{touched.email && errors.email && <p className="email-login">{errors.email}</p>}
-				</div>
-				<div className="field">
-					<Field type="password" name="password" placeholder="Password*" />
-					{touched.password && errors.password && <p className="passsword-login">{errors.password}</p>}
-				</div>
+  // hook keeps track of login information 
+  const [user, setUser] = useState({});
+  
+  // update login if change has occured 
+  useEffect(() => {
+      if (status) {
+          setUser(newUser => ({...user, newUser}))
+      }
+  }, [status]); 
 
-				<button type="submit">Register</button>
-			</Form>
-		</div>
-	);
+  return(
+      <div className="form-container-register">
+          <Paper >
+              <h1>Sign In</h1>
+              <Form>
+                  
+              <div className="field">
+                  {/* username */}
+                  <Field 
+                      type="text" 
+                      name="username" 
+                      placeholder="Userame"  
+                  />
+                  {touched.username && errors.username && ( <p className="error">{errors.username}</p> )}
+                  </div>
+
+                  <div className="field">
+                  {/* email */}
+                  <Field 
+                      type="text" 
+                      name="email" 
+                      placeholder="Email"  
+                  />
+                  {touched.email && errors.email && ( <p className="error">{errors.email}</p> )}
+                  </div>
+
+                  <div className="field">
+                  {/* role */}
+                  <Field 
+                      type="text" 
+                      name="role_id" 
+                      placeholder="Role"  
+                  />
+                  {touched.role && errors.role && ( <p className="error">{errors.role}</p> )}
+                  </div>
+>>>>>>> 5096fb13abd711e7940d7baa3ac1da02b2526574
+
+<div className="field">
+                  {/* password */}
+                  <Field 
+                      type="text" 
+                      name="password" 
+                      placeholder="Password" 
+                  />
+                  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                  </div>
+                  <button type="submit">Submit</button>
+              </Form>
+          </Paper>
+      </div>
+  );
 };
-
+// using formik 
 const FormikRegistrationForm = withFormik({
-	mapPropsToValues({ firstname, lastname, email, password }) {
-		return {
-			firstname: firstname || '',
-			lastname: lastname || '',
-			email: email || '',
-			password: password || ''
-		};
-	},
+  
+  // making sure each prop has a default value if given value is undefined 
+  mapPropsToValues({ username, password, email, role_id }) {
+    return {
+      username: username || "",
+      email: email || "",
+      role_id: role_id || "",
+      password: password || ""
+    };
+  },
+  
+  // use yup to enforce input requirements 
+  validationSchema: Yup.object().shape({
+      username: Yup
+      .string()
+      .required("Please Enter Your Name"),
+      email: Yup
+      .string()
+      .required("Please Enter Your Email"),
+      role_id: Yup
+      .string()
+      .required("Please Enter Your Role"),
+      password: Yup
+      .string()
+      .required("Please Enter Your Password"),
+  }),
+  
+  // update values and set status 
+  handleSubmit(values, { resetForm, props, setStatus }) {
+      console.log("values, props", values, props)
 
-	validationSchema: Yup.object().shape({
-		firstname: Yup.string().required('First Name is required'),
-		lastname: Yup.string().required('Last Name is required'),
-		email: Yup.string().required('Please Fill In An Email'),
-		password: Yup.string().required('Please Enter A Password')
-	})
-})(RegistrationForm);
+      axios
+        .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      resetForm(); 
+  }
+})(RegistrationForm); // currying functions
 
-export default FormikRegistrationForm;
+export default FormikRegistrationForm

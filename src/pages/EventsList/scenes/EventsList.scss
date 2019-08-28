@@ -1,0 +1,21 @@
+.events-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .event-card {
+    height: 15rem;
+    width: 40%;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 5px 6px -6px $raisin-black;
+    transition: all 0.7s ease;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.03);
+    }
+  }
+}
