@@ -2,30 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
+import './RegisterForm.scss';
 
 const RegistrationForm = ({ errors, touched, values, status }) => {
 
 	return (
-		<div>
-			<h1>Register For Corporate Event Planner</h1>
+		<div className="form-container-register">
+			<h2>Please Fill In Fields</h2>
 			<Form>
-				<div>
-					<Field type="text" name="firstname" placeholder="First Name" />
+				<div className="field">
+					<Field type="text" name="firstname" placeholder="First Name*" />
 					{touched.firstname && errors.firstname && <p className="firstname-login">{errors.firstname}</p>}
 				</div>
-				<div>
-					<Field type="text" name="middlename" placeholder="Middle Name (Optional)" />
+				<div className="field">
+					<Field type="text" name="middlename" placeholder="Middle Name (Optional)*" />
 				</div>
-				<div>
-					<Field type="text" name="lastname" placeholder="Last Name" />
+				<div className="field">
+					<Field type="text" name="lastname" placeholder="Last Name*" />
 					{touched.lastname && errors.lastname && <p className="lastname-login">{errors.lastname}</p>}
 				</div>
-				<div>
-					<Field type="text" name="email" placeholder="email" />
+				<div className="field">
+					<Field type="text" name="email" placeholder="Email*" />
 					{touched.email && errors.email && <p className="email-login">{errors.email}</p>}
 				</div>
-				<div>
-					<Field type="password" name="password" placeholder="password" />
+				<div className="field">
+					<Field type="password" name="password" placeholder="Password*" />
 					{touched.password && errors.password && <p className="passsword-login">{errors.password}</p>}
 				</div>
 
