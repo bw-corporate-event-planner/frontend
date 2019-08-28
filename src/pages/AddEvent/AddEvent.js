@@ -35,7 +35,7 @@ const AddEvent = props => {
     // .then(res => setEvents(res.data))
     // .catch(err => console.log(err))
 
-    props.history.push('/event/:id');
+    props.history.push('/event/1');
 
     console.log('the input', input);
     setInput({
