@@ -32,7 +32,7 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
                   <Field 
                       type="text" 
                       name="username" 
-                      placeholder="Userame"  
+                      placeholder="Username"  
                   />
 				  {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
 				  </div>
