@@ -18,7 +18,8 @@ function App() {
       <Route path='/register' component={RegisterForm} />
       <Route path='/event/:id' component={Event} />
       <Route path='/addevent' component={AddEvent} />
-      <Route path='/footer' component={Footer} />
+     <Footer/>
+    
     </div>
   );
 }
