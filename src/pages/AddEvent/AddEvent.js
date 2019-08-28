@@ -16,9 +16,13 @@ const AddEvent = props => {
     event_budget: '',
   });
 
-  useEffect(() => {
-    // addEvent();
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .post(`https://egge-corporate-ep.herokuapp.com/api`, input)
+
+  //     .then(res => setEvents(res.data))
+  //     .catch(err => console.log(err));
+  // }, []);
 
   const handleChange = e => {
     setInput({
@@ -31,9 +35,11 @@ const AddEvent = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // axios.post(http://, input)
-    // .then(res => setEvents(res.data))
-    // .catch(err => console.log(err))
+    axios
+      .post(`https://egge-corporate-ep.herokuapp.com/api`, input)
+
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
 
     props.history.push('/event/1');
 
