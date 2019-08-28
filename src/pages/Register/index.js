@@ -1,44 +1,108 @@
-import React from 'react'; 
+import React, { useEffect, useState } from 'react';
 import { Form, Field, withFormik } from 'formik';
-import axios from "axios";
 import * as Yup from 'yup';
+import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
+// axios post action 
 
+const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 
-const RegistrationForm = ({ errors, touched, values, status }) => {
+  // hook keeps track of login information 
+  const [user, setUser] = useState({});
 
+  // update login if change has occured 
+  useEffect(() => {
+      if (status) {
+          setUser(newUser => ({...user, newUser}))
+      }
+  }, [status]); 
 
-    return (
-        <div>
-            <h1>Register For Corporate Event Planner</h1>
-            <Form>
-                <div>
-                    <Field type="text" name="email" placeholder="email" />
-                    {touched.email && errors.email && <p className="email-login">{errors.email}</p>}
-                </div>
-                <div>
-                    <Field type="password" name="password" placeholder="password" />
-                    {touched.password && errors.password && <p className="passsword-login">{errors.password}</p>}
-                </div>
+  return(
+      <div className="master-container">
+          <Paper >
+              <h1>Sign In</h1>
+              <Form>
+                  
+                  {/* username */}
+                  <Field 
+                      type="text" 
+                      name="username" 
+                      placeholder="Userame"  
+                  />
+                  {touched.username && errors.username && ( <p className="error">{errors.username}</p> )}
 
-                <button type="submit">Register</button>
-            </Form>
-        </div>
+                  {/* email */}
+                  <Field 
+                      type="text" 
+                      name="email" 
+                      placeholder="Email"  
+                  />
+                  {touched.email && errors.email && ( <p className="error">{errors.email}</p> )}
 
-    );
-}
+                  {/* role */}
+                  <Field 
+                      type="text" 
+                      name="role_id" 
+                      placeholder="Role"  
+                  />
+                  {touched.role && errors.role && ( <p className="error">{errors.role}</p> )}
 
+                  {/* password */}
+                  <Field 
+                      type="text" 
+                      name="password" 
+                      placeholder="Password" 
+                  />
+                  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                  <button type="submit">Submit</button>
+              </Form>
+          </Paper>
+      </div>
+  );
+};
+// using formik 
 const FormikRegistrationForm = withFormik({
-    mapPropsToValues({ email, password, }) {
-        return{
-            email : email || "",
-            password : password || "",
-        }
-    },
+  
+  // making sure each prop has a default value if given value is undefined 
+  mapPropsToValues({ username, password, email, role_id }) {
+    return {
+      username: username || "",
+      email: email || "",
+      role_id: role_id || "",
+      password: password || ""
+    };
+  },
+  
+  // use yup to enforce input requirements 
+  validationSchema: Yup.object().shape({
+      username: Yup
+      .string()
+      .required("Please Enter Your Name"),
+      email: Yup
+      .string()
+      .required("Please Enter Your Email"),
+      role_id: Yup
+      .string()
+      .required("Please Enter Your Role"),
+      password: Yup
+      .string()
+      .required("Please Enter Your Password"),
+  }),
+  
+  // update values and set status 
+  handleSubmit(values, { resetForm, props, setStatus }) {
+      console.log("values, props", values, props)
 
-    validationSchema: Yup.object().shape({
-        email: Yup.string().required("Please Fill In An Email"),
-        password: Yup.string().required("Please Enter A Password")
-    })
-})(RegistrationForm)
+    //   axios
+    //     .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
+    //     .then(response => {
+    //       console.log(response)
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+      resetForm(); 
+  }
+})(RegistrationForm); // currying functions
 
-export default FormikRegistrationForm;
+export default FormikRegistrationForm
