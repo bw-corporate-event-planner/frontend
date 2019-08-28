@@ -1,7 +1,8 @@
 .nav-header-container {
   width: 100%;
+  border-radius: 0 0 50% 50%;
   box-shadow: 0 8px 6px -6px lightgrey;
-  padding: 0.2rem 4rem;
+  padding: 30px;
   background-color: #186681;
   display: flex;
   justify-content: space-between;
@@ -9,6 +10,7 @@
   margin-bottom: 1.4rem;
 
   .nav-name a {
+    padding: 20px;
     text-decoration: none;
     font-family: "Lobster", sans-serif;
     color: white;
