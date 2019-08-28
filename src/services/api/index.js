@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:5000/api";
+// const apiUrl = "http://localhost:5000/api";
+const apiUrl = "https://egge-corporate-ep.herokuapp.com/api";
+
+// .post(`https://corporate-event-planner.herokuapp.com/events/`, newEvent, config)
 
 // SINGLE EVENT
 // getEvent
@@ -24,6 +27,10 @@ export function editEvent(id, event) {
 }
 
 // EVENTS LIST
+// get all events
+export function getEvents() {
+  return axios.get(`${apiUrl}/events/`);
+}
 
 // export function getEvent() {
 //   return axios.get(`${apiUrl}/event`);

@@ -2,13 +2,25 @@ import React, { useState, useEffect } from "react";
 import ShoppingList from "../components/ShoppingList/ShoppingList";
 import { allEvents } from "../../../services/data";
 import moment from "moment";
+import { getEvents } from "../../../services/api";
 
 const Event = props => {
   const { eventId } = props.match.params.id;
-  const [event, setEvent] = useState(allEvents[props.match.params.id - 1]);
+  const [event, setEvent] = useState(allEvents[props.match.params.id - 1]); // hard coded to work with dummy array
 
   // conditional rendering based on localStorage key (set buttons to active/inactive)
   // axiosWithAuth GET event info
+
+  // const eventId = 1;
+  // console.log("EVENT ID", eventId);
+  // useEffect(() => {
+  //   getEvents(eventId)
+  //     .then(res => {
+  //       console.log("GET", res);
+  //       setEvent(res.data);
+  //     })
+  //     .catch(err => console.log(err));
+  // }, []);
 
   const startDate = moment(event.event_start).format("MMMM Do, YYYY");
   const endDate = moment(event.event_end).format("MMMM Do, YYYY");
