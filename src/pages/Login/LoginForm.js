@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Form, Field, withFormik } from 'formik';
+import React, { useState, useEffect } from 'react';
+import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
+// import Paper from '@material-ui/core/Paper';
+
+
+import './LoginForm.scss';
+
 // axios post action 
 
 const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
@@ -18,19 +22,22 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
   }, [status]); 
 
   return(
-      <div className="master-container">
-          <Paper >
-              <h1>Sign In</h1>
+      <div className="form-container">
+          {/* <Paper > */}
+              <h1>Log In</h1>
               <Form >
                   
+			  <div className="field">
                   {/* name */}
                   <Field 
                       type="text" 
                       name="username" 
                       placeholder="Userame"  
                   />
-                  {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
+				  {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
+				  </div>
 
+				  <div className="field">
                   {/* password */}
                   <Field 
                       type="text" 
@@ -38,10 +45,12 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
                       placeholder="Password" 
                      
                   />
-                  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+				  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+				  </div>
+				  
                   <button type="submit">Submit</button>
               </Form>
-          </Paper>
+          {/* </Paper> */}
       </div>
   );
 };
