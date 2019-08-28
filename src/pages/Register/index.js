@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
+import './RegisterForm.scss';
 // axios post action 
 
 const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props}) => {
@@ -18,19 +19,22 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
   }, [status]); 
 
   return(
-      <div className="master-container">
-          <Paper >
-              <h1>Sign In</h1>
+      <div className="form-container-register">
+          {/* <Paper > */}
+              <h1>Sign Up</h1>
               <Form>
                   
+              <div className="field">
                   {/* username */}
                   <Field 
                       type="text" 
                       name="username" 
-                      placeholder="Userame"  
+                      placeholder="Username"  
                   />
                   {touched.username && errors.username && ( <p className="error">{errors.username}</p> )}
+                  </div>
 
+                  <div className="field">
                   {/* email */}
                   <Field 
                       type="text" 
@@ -38,7 +42,9 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                       placeholder="Email"  
                   />
                   {touched.email && errors.email && ( <p className="error">{errors.email}</p> )}
+                  </div>
 
+                  <div className="field">
                   {/* role */}
                   <Field 
                       type="text" 
@@ -46,7 +52,9 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                       placeholder="Role"  
                   />
                   {touched.role && errors.role && ( <p className="error">{errors.role}</p> )}
+                  </div>
 
+<div className="field">
                   {/* password */}
                   <Field 
                       type="text" 
@@ -54,9 +62,10 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                       placeholder="Password" 
                   />
                   {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                  </div>
                   <button type="submit">Submit</button>
               </Form>
-          </Paper>
+          {/* </Paper> */}
       </div>
   );
 };
