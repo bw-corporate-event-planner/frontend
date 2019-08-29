@@ -105,10 +105,10 @@ const FormikRegistrationForm = withFormik({
       console.log("values, props", values, props)
 
       axios
-        .get("https://egge-corporate-ep.herokuapp.com/api/register", values)
+        .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
         .then(response => {
           console.log(response)
-          setStatus(response.data)
+          props.history.push('/login');
         })
         .catch(error => {
           console.log(error)

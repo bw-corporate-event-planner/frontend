@@ -5,16 +5,16 @@ import axios from 'axios';
 import userContext from '../../contexts/UserContext.js';
 // axios post action 
 
-const LoginForm = ({ errors, touched, values, handleSubmit, status, ...props}) => {
+const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 
   // hook keeps track of login information 
-  const [login, user, setLogin] = useState({});
-  const {setUser} = userContext(user);
+  const [login, setLogin] = useState({});
+  
+  /// const {setUser} = userContext(user);
   // update login if change has occured 
   useEffect(() => {
       if (status) {
-          setUser(status);
-          props.history.push('/');
+          setLogin(status);
       }
   }, [status]); 
 
@@ -76,6 +76,7 @@ const FormikLoginForm = withFormik({
           console.log(response)
           console.log('we in there')
           setStatus(response.data)
+          props.history.push('/');
         })
         .catch(error => {
           console.log(error)
