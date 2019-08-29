@@ -27,7 +27,7 @@ const HeaderNav = () => {
         <NavLink to="/addevent">Create New Event</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/register">Register</NavLink>
-        <button onClick={logout()}>LOGOUT</button>
+        <button onClick={logout}>LOGOUT</button>
       </div>
     </nav>
   );
