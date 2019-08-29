@@ -42,18 +42,41 @@ const Event = props => {
       .catch(err => console.log(err.response));
   };
 
+  const editEvent = e => {
+    e.preventDefault();
+    props.history.push(`/editevent/${eventId}`);
+  };
+
   return (
     <div className="event-page-card">
-      <h3>{event.event_title}</h3>
-      <div className="event-buttons-container">
-        <span>Edit event</span>
-        <span onClick={deleteEvent}>Delete event</span>
+      <h2>{event.event_title}</h2>
+      <div className="event-info-and-buttons">
+        <div className="event-info">
+          <p>
+            <span>Description: </span>
+            {event.event_description}
+          </p>
+          <p>
+            <span>Date: </span> {startDate} to {endDate}
+          </p>
+          <p>
+            <span>Location: </span> {event.event_location}
+          </p>
+          <p>
+            <span>Total Budget: </span>
+            <span id="budget">${event.event_budget}</span>
+          </p>
+        </div>
+        <div className="event-buttons-container">
+          <button className="event-button" onClick={editEvent}>
+            Edit event
+          </button>
+          <button className="event-button" onClick={deleteEvent}>
+            Delete event
+          </button>
+        </div>
       </div>
-      <p>Description: {event.event_description}</p>
-      <p>
-        From {startDate} to {endDate}
-      </p>
-      <p>Budget: ${event.event_budget} </p>
+
       <ShoppingList
         shoppingList={event.items}
         eventId={eventId}

@@ -9,23 +9,37 @@ const Expenditures = props => {
     setTimeout(() => {
       setPercent(Math.floor((100 * purchasedItemsCost) / budget));
     }, 1000);
-    // setPercent(Math.floor((100 * totalCost) / budget));
   }, [totalCost, budget, purchasedItemsCost]);
   const percentOfBudget = Math.floor((100 * purchasedItemsCost) / budget);
 
   return (
     <div className="expenditures">
       <div className="progress-bar-container">
-        <Progress
-          type="circle"
-          width={180}
-          strokeWidth={10}
-          strokeColor={{
-            "0%": "#87d068",
-            "100%": "#108ee9"
-          }}
-          percent={percentOfBudget}
-        />
+        <p>Percent of budget reached</p>
+        {percentOfBudget > 100 ? (
+          <Progress
+            type="circle"
+            width={180}
+            strokeWidth={10}
+            strokeColor={{
+              "0%": "red",
+              "100%": "orange"
+            }}
+            status="exception"
+            percent={percentOfBudget}
+          />
+        ) : (
+          <Progress
+            type="circle"
+            width={180}
+            strokeWidth={10}
+            strokeColor={{
+              "0%": "#87d068",
+              "100%": "#108ee9"
+            }}
+            percent={percentOfBudget}
+          />
+        )}
       </div>
       <div className="budget-stats">
         <Card className="stat">
