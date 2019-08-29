@@ -48,9 +48,9 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
                     {/* role */}
                     <Field component='select' name='role'>
                         <option>Select a Role</option>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
+                        <option value={1}>Marketing</option>
+                        <option value={2}>Back-End</option>
+                        <option value={3}>Front-End</option>
 
                     </Field>
 

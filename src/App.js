@@ -11,7 +11,9 @@ import UserContext from "./contexts/UserContext";
 import { refresh } from "./services/api";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = 
+  useState({});
+  console.log(user);
 
   useEffect(() => {
     refresh()
