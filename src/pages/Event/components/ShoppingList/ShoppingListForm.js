@@ -8,7 +8,7 @@ const initialEditingListItem = {
   // item_vendor: ""
 };
 
-const ShoppingListForm = ({ addListItem }) => {
+const ShoppingListForm = ({ addListItem, eventId }) => {
   const [input, setInput] = useState(initialEditingListItem);
 
   const handleChange = e => {
@@ -26,7 +26,7 @@ const ShoppingListForm = ({ addListItem }) => {
   const handleSubmit = e => {
     e.preventDefault();
     // post request to shoppingListItems
-    addListItem(input);
+    addListItem(input, eventId);
     setInput(initialEditingListItem);
   };
 
