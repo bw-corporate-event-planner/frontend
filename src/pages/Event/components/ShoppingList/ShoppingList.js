@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ShoppingListForm from "./ShoppingListForm";
 import ShoppingListItem from "./ShoppingListItem";
 import Expenditures from "../Expenditures/Expenditures";
-import axios from "axios";
+import * as api from "../../../../services/api";
 
 const initialListItem = {
   id: -1,
@@ -13,21 +13,11 @@ const initialListItem = {
   // item_vendor: ""
 };
 
-const ShoppingList = ({ shoppingList, budget }) => {
+const ShoppingList = ({ shoppingList, budget, eventId }) => {
   const [shoppingListItems, setShoppingListItems] = useState(shoppingList);
   const [listItemToEdit, setListItemToEdit] = useState(initialListItem);
   const [totalCost, setTotalCost] = useState(0);
   const [purchasedItemsCost, setPurchasedItemsCost] = useState(0);
-
-  console.log(shoppingListItems);
-
-  //GET LIST ITEM
-  // useEffect(() => {
-  //   axios
-  //     .get("https://egge-corporate-ep.herokuapp.com/api/lists/4")
-  //     .then(res => console.log("LIST", res.data))
-  //     .catch(err => console.log(err));
-  // }, [shoppingListItems]);
 
   useEffect(() => {
     setShoppingListItems(shoppingList);
@@ -59,27 +49,92 @@ const ShoppingList = ({ shoppingList, budget }) => {
 
   // DELETE
   const deleteListItem = id => {
-    let temp = shoppingListItems.filter(item => item.id !== id);
-    setShoppingListItems(temp);
+    // With endpoint
+    api
+      .deleteListItem(id)
+      .then(res => {
+        let temp = shoppingListItems.filter(item => item.id !== id);
+        setShoppingListItems(temp);
+      })
+      .catch(err => console.log(err));
+
+    // With dummy data
+    // let temp = shoppingListItems.filter(item => item.id !== id);
+    // setShoppingListItems(temp);
+  };
+
+  const putListItem = () => {
+    api
+      // .editListItem(listItem) // includes vendor_name which throws backend error
+      .editListItem({
+        id: listItemToEdit.id,
+        item_name: listItemToEdit.item_name,
+        item_cost: listItemToEdit.item_cost
+      })
+      .then(res => {
+        console.log("PUTTTT", res);
+        let temp = shoppingListItems.map(item => {
+          if (item.id === listItemToEdit.id) {
+            return res.data[0];
+            // return res.data; // ask Samantha to do .first
+          }
+          return item;
+        });
+        setShoppingListItems(temp);
+        setListItemToEdit(initialListItem);
+      })
+      .catch(err => console.log(err.response));
   };
 
   // PUT
-  const toggleListItem = id => {
-    let temp = shoppingListItems.map(item => {
-      if (item.id === id) {
-        // console.log(item.id, id)
-        return { ...item, item_complete: !item.item_complete };
-      }
-      return item;
-    });
-    setShoppingListItems(temp);
+  const toggleListItem = listItem => {
+    // With endpoint
+    api
+      // .editListItem({ item_complete: !listItem.item_complete })
+      .editListItem({
+        item_complete: !listItem.item_complete,
+        id: listItem.id
+      })
+      .then(res => {
+        let temp = shoppingListItems.map(item => {
+          if (item.id === listItem.id) {
+            return res.data[0];
+            // return res.data; // ask Samantha to do .first
+          }
+          return item;
+        });
+        setShoppingListItems(temp);
+      })
+      .catch(err => console.log(err.response));
+
+    // With dummy data
+    // let temp = shoppingListItems.map(item => {
+    //   if (item.id === id) {
+    //     return { ...item, item_complete: !item.item_complete };
+    //   }
+    //   return item;
+    // });
+    // setShoppingListItems(temp);
   };
 
   // POST
-  const addListItem = item => {
-    let temp = [...shoppingListItems, item];
-    console.log(temp);
-    setShoppingListItems(temp);
+  const addListItem = (item, event_id) => {
+    // With endpoint
+    api
+      // .addListItem({ ...item, event_id, vendor_id: 1 })
+      .addListItem({ ...item, event_id })
+      .then(res => {
+        console.log("ADD ITEM", res.data);
+        let temp = [...shoppingListItems, res.data[0]];
+        // let temp = [...shoppingListItems, res.data]; // ask Samantha to do .first
+        setShoppingListItems(temp);
+      })
+      .catch(err => console.log(err.response));
+
+    // With dummy data
+    // let temp = [...shoppingListItems, item];
+    // console.log(temp);
+    // setShoppingListItems(temp);
   };
 
   if (!shoppingListItems) {
@@ -97,11 +152,13 @@ const ShoppingList = ({ shoppingList, budget }) => {
       <ShoppingListForm
         addListItem={addListItem}
         initialListItem={initialListItem}
+        eventId={eventId}
       />
       <div className="shopping-list-items-container">
         {shoppingListItems.map(listItem => (
           <ShoppingListItem
             key={listItem.id}
+            putListItem={putListItem}
             listItemToEdit={listItemToEdit}
             setListItemToEdit={setListItemToEdit}
             editListItem={editListItem}
