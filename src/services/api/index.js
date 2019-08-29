@@ -48,7 +48,7 @@ export function addListItem(listItem) {
 
 // edit item
 export function editListItem(listItem) {
-  return axios.put(`${apiUrl}/lists/`);
+  return axios.put(`${apiUrl}/lists/${listItem.id}`, listItem);
 }
 
 // delete item

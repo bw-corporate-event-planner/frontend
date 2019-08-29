@@ -14,7 +14,7 @@ const Event = props => {
 
   // Comment out to use dummy dummy instead API endpoints
   const [event, setEvent] = useState({ items: [] });
-  const eventId = 1;
+  const eventId = props.match.params.id;
   console.log("EVENT ID", eventId);
   useEffect(() => {
     getEvent(eventId)
@@ -43,7 +43,11 @@ const Event = props => {
         From {startDate} to {endDate}
       </p>
       <p>Budget: ${event.event_budget} </p>
-      <ShoppingList shoppingList={event.items} budget={event.event_budget} />
+      <ShoppingList
+        shoppingList={event.items}
+        eventId={eventId}
+        budget={event.event_budget}
+      />
       {/* <ShoppingList
         shoppingList={event.shopping_list}
         budget={event.event_budget}
