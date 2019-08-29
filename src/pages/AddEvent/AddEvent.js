@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import EditEvent from './EditEvent'
 
-import './AddEvent.scss';
+// import './AddEvent.scss'
 
 const AddEvent = props => {
-  console.log(props);
-  const [events, setEvents] = useState([]);
+  console.log(props)
+  const [events, setEvents] = useState([])
 
   const [input, setInput] = useState({
     event_title: '',
@@ -13,68 +14,73 @@ const AddEvent = props => {
     event_location: '',
     event_start: '',
     event_end: '',
-    event_budget: '',
-  });
+    event_budget: ''
+  })
 
   useEffect(() => {
-    // addEvent();
-  }, []);
+    axios
+      .get(`https://egge-corporate-ep.herokuapp.com/api/events`)
+
+      .then(res => setEvents(res.data))
+      .catch(err => console.log(err))
+  }, [])
 
   const handleChange = e => {
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
-    });
-  };
+      [e.target.name]: e.target.value
+    })
+  }
 
-  console.log(input);
+  console.log(input)
 
   const handleSubmit = e => {
-    e.preventDefault();
-    // axios.post(http://, input)
-    // .then(res => setEvents(res.data))
-    // .catch(err => console.log(err))
+    e.preventDefault()
+    axios
+      .post(`https://egge-corporate-ep.herokuapp.com/api/events`, input)
 
-    props.history.push('/event/1');
+      .then(res => setEvents(res.data))
+      .catch(err => console.log(err))
 
-    console.log('the input', input);
+    // props.history.push('/event/1');
+
+    console.log('the input', input)
     setInput({
       event_title: '',
       event_description: '',
       event_location: '',
       event_start: '',
       event_end: '',
-      event_budget: '',
-    });
-  };
+      event_budget: ''
+    })
+  }
 
-  console.log(input);
+  console.log(input)
 
   return (
     <div className='formStyles'>
+      <h2>Add Event</h2>
       <form onSubmit={handleSubmit}>
-        <h2>Add Event</h2>
-
+        <label>Event Title</label>
         <input
           name='event_title'
           value={input.event_title}
           onChange={handleChange}
           type='text'
-          placeholder='Event Title'
         />
+        <label>Event Description</label>
         <input
           name='event_description'
           value={input.event_description}
           onChange={handleChange}
           type='text'
-          placeholder='Event Description'
         />
+        <label>Event Location</label>
         <input
           name='event_location'
           value={input.event_location}
           onChange={handleChange}
           type='text'
-          placeholder='Event Location'
         />
         <label>Start date</label>
         <input
@@ -90,18 +96,20 @@ const AddEvent = props => {
           onChange={handleChange}
           type='date'
         />
-
+        <label>Total Budget</label>
         <input
           name='event_budget'
           value={input.event_budget}
           onChange={handleChange}
           type='number'
-          placeholder='Total Budget'
         />
 
         <button>Submit Event</button>
       </form>
+      {events.map(event => (
+        <EditEvent event={event} setEvents={setEvents} />
+      ))}
     </div>
-  );
-};
-export default AddEvent;
+  )
+}
+export default AddEvent
