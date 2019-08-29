@@ -5,6 +5,7 @@ import EventsList from './pages/EventsList/scenes/EventsList';
 import AddEvent from './pages/AddEvent/AddEvent';
 import EditEvent from './pages/AddEvent/EditEvent';
 import Event from './pages/Event/scenes/Event';
+import EditPage from './pages/AddEvent/EditPage';
 import LoginForm from './pages/Login/LoginForm';
 import HeaderNav from './components/HeaderNav/HeaderNav';
 import Footer from './components/Footer'
@@ -19,6 +20,7 @@ function App() {
       <Route path='/event/:id' component={Event} />
       <Route path='/addevent' component={AddEvent} />
       <Route path='/editevent' component={EditEvent} />
+      <Route path ='/editpage/:id' component={EditPage}/>
       <Route path='/footer' component={Footer} />
     </div>
   );

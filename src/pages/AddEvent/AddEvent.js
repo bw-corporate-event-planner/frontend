@@ -19,7 +19,7 @@ const AddEvent = props => {
 
   useEffect(() => {
     axios
-      .get(`https://egge-corporate-ep.herokuapp.com/api/events/props.match`)
+      .get(`https://egge-corporate-ep.herokuapp.com/api/events`)
 
       .then(res => setEvents(res.data))
       .catch(err => console.log(err))

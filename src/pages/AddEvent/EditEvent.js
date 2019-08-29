@@ -43,7 +43,7 @@ const EditEvent = props => {
   const handleEdit = e => {
     e.preventDefault()
     axios
-      .put(`https://egge-corporate-ep.herokuapp.com/api/events/${id}, input`)
+      .put(`https://egge-corporate-ep.herokuapp.com/api/events/${id}`, input)
       .then(res => props.setEvents(res.data))
       .catch(err => console.log(err))
     setEditToggle(false)
@@ -68,14 +68,14 @@ const EditEvent = props => {
               placeholder='Event Title'
             />
             <input
-              name='description'
+              name='event_description'
               value={input.event_description}
               onChange={handleChange}
               type='text'
               placeholder='Event Description'
             />
             <input
-              name='location'
+              name='event_location'
               value={input.event_location}
               onChange={handleChange}
               type='text'
@@ -83,14 +83,14 @@ const EditEvent = props => {
             />
             <label>Start date</label>
             <input
-              name='start_date'
+              name='event_start'
               value={input.event_start}
               onChange={handleChange}
               type='date'
             />
 
             <input
-              name='end_date'
+              name='event_end'
               value={input.event_end}
               onChange={handleChange}
               type='date'
