@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from "react";
 import ShoppingList from "../components/ShoppingList/ShoppingList";
 import { allEvents } from "../../../services/data";
+import { getEvent } from "../../../services/api";
 import moment from "moment";
-import { getEvents } from "../../../services/api";
+
+// conditional rendering based on localStorage key (set buttons to active/inactive)
+// axiosWithAuth GET event info
 
 const Event = props => {
-  const { eventId } = props.match.params.id;
-  const [event, setEvent] = useState(allEvents[props.match.params.id - 1]); // hard coded to work with dummy array
+  // Uncomment to use dummy data instead of API endpoints
+  // const { eventId } = props.match.params.id;
+  // const [event, setEvent] = useState(allEvents[props.match.params.id - 1]); // hard coded to work with dummy array
 
-  // conditional rendering based on localStorage key (set buttons to active/inactive)
-  // axiosWithAuth GET event info
-
-  // const eventId = 1;
-  // console.log("EVENT ID", eventId);
-  // useEffect(() => {
-  //   getEvents(eventId)
-  //     .then(res => {
-  //       console.log("GET", res);
-  //       setEvent(res.data);
-  //     })
-  //     .catch(err => console.log(err));
-  // }, []);
+  // Comment out to use dummy dummy instead API endpoints
+  const [event, setEvent] = useState({ items: [] });
+  const eventId = 1;
+  console.log("EVENT ID", eventId);
+  useEffect(() => {
+    getEvent(eventId)
+      .then(res => {
+        console.log("GET", res.data);
+        setEvent(res.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   const startDate = moment(event.event_start).format("MMMM Do, YYYY");
   const endDate = moment(event.event_end).format("MMMM Do, YYYY");
   const timeTilEvent = moment(event.event_start).fromNow();
 
-  console.log(timeTilEvent);
+  // console.log(timeTilEvent);
 
   return (
     <div className="event-page-card">
@@ -40,10 +43,11 @@ const Event = props => {
         From {startDate} to {endDate}
       </p>
       <p>Budget: ${event.event_budget} </p>
-      <ShoppingList
+      <ShoppingList shoppingList={event.items} budget={event.event_budget} />
+      {/* <ShoppingList
         shoppingList={event.shopping_list}
         budget={event.event_budget}
-      />
+      /> */}
     </div>
   );
 };
