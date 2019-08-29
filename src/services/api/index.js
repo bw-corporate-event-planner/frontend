@@ -3,35 +3,65 @@ import axios from "axios";
 // const apiUrl = "http://localhost:5000/api";
 const apiUrl = "https://egge-corporate-ep.herokuapp.com/api";
 
-// .post(`https://corporate-event-planner.herokuapp.com/events/`, newEvent, config)
+// EVENTs ------------------------------------------
 
-// SINGLE EVENT
-// getEvent
-export function getEvent(id) {
-  return axios.get(`${apiUrl}/event/${id}`);
-}
-
-// addEvent
-export function addEvent(event) {
-  return axios.post(`${apiUrl}/event/${event}`);
-}
-
-// deleteEvent
-export function deleteEvent(id) {
-  return axios.delete(`${apiUrl}/event/${id}`);
-}
-
-// editEvent
-export function editEvent(id, event) {
-  return axios.post(`${apiUrl}/event/${id}`, event);
-}
-
-// EVENTS LIST
 // get all events
 export function getEvents() {
   return axios.get(`${apiUrl}/events/`);
 }
 
+// get individual event
+export function getEvent(id) {
+  return axios.get(`${apiUrl}/events/${id}`);
+}
+
+// add event
+export function addEvent(event) {
+  return axios.post(`${apiUrl}/events/`, event);
+}
+
+// delete event
+export function deleteEvent(id) {
+  return axios.delete(`${apiUrl}/events/${id}`);
+}
+
+// edit event
+export function editEvent(id) {
+  return axios.put(`${apiUrl}/events/${id}`);
+}
+
+// SHOPPING LIST ------------------------------------------
+// get all items
+export function getListItems() {
+  return axios.get(`${apiUrl}/lists/`);
+}
+
+// get individual item
+export function getListItem(listId) {
+  return axios.get(`${apiUrl}/lists/${listId}`);
+}
+
+// add item
+export function addListItem(listItem) {
+  return axios.post(`${apiUrl}/lists/`, listItem);
+}
+
+// edit item
+export function editListItem(listItem) {
+  return axios.put(`${apiUrl}/lists/`);
+}
+
+// delete item
+export function deleteListItem(listId) {
+  return axios.delete(`${apiUrl}/lists/${listId}`);
+}
+
+// USERS ------------------------------------------
+export function refresh() {
+  return axios.get(`${apiUrl}/refresh`);
+}
+
+// EMULATE A PROMISE
 // export function getEvent() {
 //   return axios.get(`${apiUrl}/event`);
 //

@@ -3,7 +3,6 @@ import React from "react";
 const ShoppingListItem = ({
   listItem,
   editListItem,
-  editing,
   listItemToEdit,
   setListItemToEdit,
   toggleListItem,
@@ -23,7 +22,6 @@ const ShoppingListItem = ({
   return (
     <div>
       {/* Conditional rendering of form or item based on editing boolean */}
-      {/* {editing ? ( */}
       {listItemToEdit.id && listItemToEdit.id === listItem.id ? (
         <form onSubmit={saveEdit}>
           <label>
