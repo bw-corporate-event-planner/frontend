@@ -44,7 +44,7 @@ const Event = props => {
 
   const editEvent = e => {
     e.preventDefault();
-    props.history.push(`/editevent/${eventId}`);
+    props.history.push(`/editpage/${eventId}`);
   };
 
   return (

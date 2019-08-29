@@ -32,16 +32,15 @@ const EventsList = props => {
   // }, [searchText])
 
   return (
-    <div>
+    <div className="events-list">
       <h2>Upcoming events</h2>
       <form>
-        <label>
-          <input
-            value={searchText}
-            placeholder="Search by event name"
-            onChange={handleSearch}
-          />
-        </label>
+        <input
+          type="text"
+          value={searchText}
+          placeholder="Search by event name"
+          onChange={handleSearch}
+        />
       </form>
       <div className="events-container">
         {eventsList
