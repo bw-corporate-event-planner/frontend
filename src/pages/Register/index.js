@@ -47,19 +47,6 @@ const RegistrationForm = ({
           )}
         </div>
 
-<<<<<<< HEAD
-                  <div className="field">
-                  {/* role */}
-                  <Field component='select' name='role'>
-                  <option>Select a Role</option>
-                        <option value={1}>Marketing</option>
-                        <option value={2}>Back-End</option>
-                        <option value={3}>Front-End</option>
-                  </Field>
-                      
-                  {touched.role && errors.role && ( <p className="error">{errors.role}</p> )}
-                  </div>
-=======
         <div className="field">
           {/* role */}
           <Field type="text" name="role_id" placeholder="Role" />
@@ -67,7 +54,6 @@ const RegistrationForm = ({
             <p className="error">{errors.role}</p>
           )}
         </div>
->>>>>>> 5593d3e83bc460906e223fd2424b2a583184351a
 
         <div className="field">
           {/* password */}
@@ -106,22 +92,6 @@ const FormikRegistrationForm = withFormik({
   handleSubmit(values, { resetForm, props, setStatus }) {
     console.log("values, props", values, props);
 
-<<<<<<< HEAD
-      axios
-        .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
-        .then(response => {
-          console.log(response)
-          props.history.push('/login');
-        })
-        .catch(error => {
-          console.log(error)
-        })
-      resetForm(); 
-  }
-})(RegistrationForm); // currying functions
-
-export default FormikRegistrationForm
-=======
     axios
       .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
       .then(response => {
@@ -135,4 +105,3 @@ export default FormikRegistrationForm
 })(RegistrationForm); // currying functions
 
 export default FormikRegistrationForm;
->>>>>>> 5593d3e83bc460906e223fd2424b2a583184351a
