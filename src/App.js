@@ -17,8 +17,10 @@ function App() {
     refresh()
       .then(res => {
         setUser(res.data);
+        console.log("success");
       })
       .catch(err => {
+        console.log("failure");
         setUser(false);
       });
   }, []);

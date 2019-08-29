@@ -58,7 +58,7 @@ export function deleteListItem(listId) {
 
 // USERS ------------------------------------------
 export function refresh() {
-  return axios.get(`${apiUrl}/refresh`);
+  return axios.get(`${apiUrl}/refresh`, { withCredentials: true });
 }
 
 // EMULATE A PROMISE
