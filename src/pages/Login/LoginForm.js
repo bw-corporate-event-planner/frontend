@@ -80,7 +80,7 @@ const FormikLoginForm = withFormik({
       console.log("values, props", values, props)
 
       axios
-      .post("https://egge-corporate-ep.herokuapp.com/api/login", values, {withCredentials: true})
+      .post("https://egge-corporate-ep.herokuapp.com/api/login", values, {withCredentials: false})
         .then(response => {
           console.log(response)
           console.log('we in here')
