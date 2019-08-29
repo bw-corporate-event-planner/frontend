@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 6rem;
   align-content: center;
   text-align: center;
 
@@ -28,6 +28,18 @@
     a {
       color: white;
       font-size: 1.2rem;
+    }
+    button {
+      // padding: 20px;
+      border-style: none;
+      border: 1px solid white;
+      background-color: #186681;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #fff;
+      cursor: pointer;
+      outline: none;
     }
   }
 }
