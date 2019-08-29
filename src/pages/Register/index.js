@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
-// import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import './RegisterForm.scss';
 // axios post action 
@@ -105,9 +104,10 @@ const FormikRegistrationForm = withFormik({
       console.log("values, props", values, props)
 
       axios
-        .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
+        .get("https://egge-corporate-ep.herokuapp.com/api/register", values)
         .then(response => {
           console.log(response)
+          setStatus(response.data)
           props.history.push('/login');
         })
         .catch(error => {
