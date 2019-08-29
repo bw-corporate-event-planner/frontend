@@ -1,48 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import { faFacebook, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function Footer(){
-  const currentYear = new Date().getFullYear();
-  return(
-    <FooterWrapper>
-          <span>© {currentYear} EVENT</span>
-          <div className="cta-icons">
-            <a href="https://www.instagram.com/"><i className="fab fa-instagram" /></a>
-            <a href="https://twitter.com/"><i className="fab fa-twitter" /></a>
-            <a href="https://en-gb.facebook.com/"><i className="fab fa-facebook-f" /></a>
-          </div>
-    </FooterWrapper>
-  );
+const Footer = () => {
+  return (
+    <footer className="navbar navbar-dark bg-dark">
+      <h3><strong>Find us on...</strong></h3>
+      <div className="social">
+        <a href= "twitter.com"><FontAwesomeIcon className = "twitter" icon={faTwitter}/></a>
+        <a href= "facebook.com"><FontAwesomeIcon className = "facebook" icon={faFacebook}/></a>
+        <a href= "instagram.com"><FontAwesomeIcon className = "instagram" icon={faInstagram} /></a>
+      </div>
+      <p>Copyright © 2019, EVENT, USA</p>
+    </footer>
+  )
 }
 
-const FooterWrapper = styled.div`
-    display: flex;
-    border-radius: 50% 50% 0 0;
-    box-shadow: 0 8px 6px -6px lightgrey;
-    flex-direction: column;
-    background: #333;
-    padding: 2.5rem;
-    span {
-      color: #f2fcff;
-      position: absolute;
-      opacity: 0.7;
-      left: 0;
-      right: 0;
-    }
-  .cta-icons {
-    display: flex;
-    justify-content: flex-end;
-    a {
-      padding: 0 1.5rem;
-      color: #f2fcff;
-      opacity: 0.7;
-      z-index: 3;
-      &:hover {
-        color: #07a0c3;
-        cursor: pointer;
-        transition: 0.3s ease;
-        opacity: 1;
-      }
-    }
-  }
-`;
+export default Footer;
