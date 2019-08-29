@@ -6,17 +6,17 @@ import './RegisterForm.scss';
 import userContext from '../../contexts/UserContext.js';
 // axios post action 
 
-const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props }) => {
+const RegistrationForm = ({ errors, touched, values, handleSubmit, status, history, ...props }) => {
 
     // hook keeps track of login information 
     const [user, setUser] = useState({});
-    const {setuser} = userContext(user);
+    const { setuser } = userContext(user);
 
     // update login if change has occured 
     useEffect(() => {
         if (status) {
-            setUser(newUser => ({ ...user, newUser }))
-            props.history.push('/');
+            setUser(status);
+            history.push('/');
         }
     }, [status]);
 
