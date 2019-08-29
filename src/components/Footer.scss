@@ -1,0 +1,33 @@
+footer {
+    width: 100%;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 8px 6px -6px lightgrey;
+  padding: 40px;
+  padding-top: 50px;
+  background-color: #186681;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5rem;
+  align-content: center;
+  text-align: center;
+
+  h3 {
+      color:white;
+      font-family: "Lobster", sans-serif;
+      padding: 20px;
+      font-size: 1.5rem;
+  }
+
+  .social {
+    //   background:white;
+      width:30%;
+      font-size:2rem;
+      display: flex;
+      justify-content: space-around;
+  }
+
+  .copyright {
+      color:white;
+  }
+}

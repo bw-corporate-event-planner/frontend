@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Icon, Statistic, Tooltip, Progress, Spin } from "antd";
+import { Card, Icon, Statistic, Progress, Spin } from "antd";
 
 const Expenditures = props => {
   const { totalCost, purchasedItemsCost, budget } = props;
@@ -9,23 +9,37 @@ const Expenditures = props => {
     setTimeout(() => {
       setPercent(Math.floor((100 * purchasedItemsCost) / budget));
     }, 1000);
-    // setPercent(Math.floor((100 * totalCost) / budget));
-  }, [totalCost]);
+  }, [totalCost, budget, purchasedItemsCost]);
   const percentOfBudget = Math.floor((100 * purchasedItemsCost) / budget);
 
   return (
     <div className="expenditures">
       <div className="progress-bar-container">
-        <Progress
-          type="circle"
-          // width="180px"
-          strokeWidth="10"
-          strokeColor={{
-            "0%": "#87d068",
-            "100%": "#108ee9"
-          }}
-          percent={percentOfBudget}
-        />
+        <p>Percent of budget reached</p>
+        {percentOfBudget > 100 ? (
+          <Progress
+            type="circle"
+            width={180}
+            strokeWidth={10}
+            strokeColor={{
+              "0%": "red",
+              "100%": "orange"
+            }}
+            status="exception"
+            percent={percentOfBudget}
+          />
+        ) : (
+          <Progress
+            type="circle"
+            width={180}
+            strokeWidth={10}
+            strokeColor={{
+              "0%": "#87d068",
+              "100%": "#108ee9"
+            }}
+            percent={percentOfBudget}
+          />
+        )}
       </div>
       <div className="budget-stats">
         <Card className="stat">
@@ -57,6 +71,14 @@ const Expenditures = props => {
         <Card className="stat">
           {!totalCost ? (
             <Spin />
+          ) : budget - purchasedItemsCost < 0 ? (
+            <Statistic
+              title="Budget Exceeded"
+              value={budget - purchasedItemsCost}
+              precision={2}
+              valueStyle={{ color: "red" }}
+              prefix={<Icon type="dollar" />}
+            />
           ) : (
             <Statistic
               title="Budget Remaining"

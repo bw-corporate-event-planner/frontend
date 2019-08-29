@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Event from "../../Event/scenes/Event";
 import { Link } from "react-router-dom";
 import { allEvents } from "../../../services/data";
 import { getEvents } from "../../../services/api";
+import moment from "moment";
 
 const EventsList = props => {
   // console.log(allEvents)
@@ -18,7 +18,7 @@ const EventsList = props => {
   useEffect(() => {
     getEvents()
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setEventsList(res.data);
       })
       .catch(err => console.log(err));
@@ -48,18 +48,22 @@ const EventsList = props => {
           .filter(event =>
             event.event_title.toLowerCase().includes(searchText.toLowerCase())
           )
-          .map(event => (
-            <div className="event-card">
-              <h3>{event.event_title}</h3>
-              <p>Budget: ${event.event_budget}</p>
-              <p>
-                From <span>{event.event_start}</span> to{" "}
-                <span>{event.event_end}</span>
-              </p>
-              <p>{event.event_location}</p>
-              <Link to={`/event/${event.id}`}>View Event</Link>
-            </div>
-          ))}
+          .map(event => {
+            const startDate = moment(event.event_start).format("MMMM Do, YYYY");
+            const endDate = moment(event.event_end).format("MMMM Do, YYYY");
+
+            return (
+              <div className="event-card">
+                <h3>{event.event_title}</h3>
+                <p>Budget: ${event.event_budget}</p>
+                <p>
+                  From <span>{startDate}</span> to <span>{endDate}</span>
+                </p>
+                <p>{event.event_location}</p>
+                <Link to={`/event/${event.id}`}>View Event</Link>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

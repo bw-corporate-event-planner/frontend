@@ -3,27 +3,24 @@ import React from "react";
 const ShoppingListItem = ({
   listItem,
   editListItem,
-  editing,
+  putListItem,
   listItemToEdit,
   setListItemToEdit,
   toggleListItem,
   deleteListItem
 }) => {
   const handleChange = e => {
-    // console.log(e.target.name)
     setListItemToEdit({ ...listItemToEdit, [e.target.name]: e.target.value });
   };
 
   const saveEdit = e => {
     e.preventDefault();
-    // PUT REQUEST // setListItem
+    putListItem();
   };
 
-  //   console.log("-------", listItemToEdit, listItem);
   return (
     <div>
       {/* Conditional rendering of form or item based on editing boolean */}
-      {/* {editing ? ( */}
       {listItemToEdit.id && listItemToEdit.id === listItem.id ? (
         <form onSubmit={saveEdit}>
           <label>
@@ -45,7 +42,7 @@ const ShoppingListItem = ({
             <span>.00</span>
           </label>
           <div className="item-buttons-container">
-            <span onClick={() => console.log("saved")}>save edit</span>
+            <button id="save-edit">save edit</button>
             <span>toggle</span>
             <span>delete</span>
           </div>
@@ -64,7 +61,7 @@ const ShoppingListItem = ({
           </div>
           <div className="item-buttons-container">
             <span onClick={() => editListItem(listItem)}>edit</span>
-            <span onClick={() => toggleListItem(listItem.id)}>toggle</span>
+            <span onClick={() => toggleListItem(listItem)}>toggle</span>
             <span onClick={() => deleteListItem(listItem.id)}>delete</span>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { notification } from "antd";
 
 const initialEditingListItem = {
   event_id: "",
@@ -8,13 +9,12 @@ const initialEditingListItem = {
   // item_vendor: ""
 };
 
-const ShoppingListForm = ({ addListItem }) => {
+const ShoppingListForm = ({ addListItem, eventId }) => {
   const [input, setInput] = useState(initialEditingListItem);
 
   const handleChange = e => {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
-    // console.log("target", value)
 
     setInput({
       ...input,
@@ -23,11 +23,21 @@ const ShoppingListForm = ({ addListItem }) => {
     });
   };
 
+  console.log(input);
   const handleSubmit = e => {
     e.preventDefault();
-    // post request to shoppingListItems
-    addListItem(input);
-    setInput(initialEditingListItem);
+
+    if (input.item_name === "") {
+      console.log("Enter an input");
+
+      notification.open({
+        message: "Please enter the budget item name"
+      });
+    } else {
+      // POST request
+      addListItem(input, eventId);
+      setInput(initialEditingListItem);
+    }
   };
 
   return (
@@ -61,7 +71,7 @@ const ShoppingListForm = ({ addListItem }) => {
           bought?
         </label>
         <div className="item-buttons-container">
-          <button type="submit">add to list</button>
+          <button type="submit">Add</button>
         </div>
       </form>
     </>
