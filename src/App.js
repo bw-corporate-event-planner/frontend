@@ -26,7 +26,7 @@ function App() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <div>
-        <HeaderNav />
+        <Route path="/" component={HeaderNav} />
         <Route exact path="/" component={EventsList} />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
