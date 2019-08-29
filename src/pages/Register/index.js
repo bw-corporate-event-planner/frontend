@@ -57,7 +57,7 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
 <div className="field">
                   {/* password */}
                   <Field 
-                      type="text" 
+                      type="password" 
                       name="password" 
                       placeholder="Password" 
                   />
