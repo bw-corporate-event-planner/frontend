@@ -33,18 +33,21 @@ const LoginForm = ({ errors, touched, values, user, handleSubmit, status, histor
           />
           {touched.name && errors.name && (<p className="error">{errors.name}</p>)}
 
-          {/* password */}
-          <Field
-            type="text"
-            name="password"
-            placeholder="Password"
-
-          />
-          {touched.password && errors.password && <p className="error">{errors.password}</p>}
-          <button type="submit">Submit</button>
-        </Form>
-      </Paper>
-    </div>
+				  <div className="field">
+                  {/* password */}
+                  <Field 
+                      type="password" 
+                      name="password" 
+                      placeholder="Password" 
+                     
+                  />
+				  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+				  </div>
+				  
+                  <button type="submit">Submit</button>
+              </Form>
+          {/* </Paper> */}
+      </div>
   );
 };
 // using formik 

@@ -1,6 +1,8 @@
-import React from 'react'
-import { faFacebook, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { faFacebook, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import './Footer.scss';
 
 const Footer = () => {
   return (
@@ -11,7 +13,7 @@ const Footer = () => {
         <a href= "facebook.com"><FontAwesomeIcon className = "facebook" icon={faFacebook}/></a>
         <a href= "instagram.com"><FontAwesomeIcon className = "instagram" icon={faInstagram} /></a>
       </div>
-      <p>Copyright © 2019, EVENT, USA</p>
+      <p className="copyright">Copyright © 2019, EVENT, USA</p>
     </footer>
   )
 }

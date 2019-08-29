@@ -46,33 +46,20 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, histo
                     {touched.email && errors.email && (<p className="error">{errors.email}</p>)}
                 </div>
 
-                <div className="field">
-                    {/* role */}
-                    <Field component='select' name='role'>
-                        <option>Select a Role</option>
-                        <option value={1}>Marketing</option>
-                        <option value={2}>Back-End</option>
-                        <option value={3}>Front-End</option>
-
-                    </Field>
-
-                    {touched.role && errors.role && (<p className="error">{errors.role}</p>)}
-                </div>
-
-                <div className="field">
-                    {/* password */}
-                    <Field
-                        type="text"
-                        name="password"
-                        placeholder="Password"
-                    />
-                    {touched.password && errors.password && <p className="error">{errors.password}</p>}
-                </div>
-                <button type="submit">Submit</button>
-            </Form>
-            {/* </Paper> */}
-        </div>
-    );
+<div className="field">
+                  {/* password */}
+                  <Field 
+                      type="password" 
+                      name="password" 
+                      placeholder="Password" 
+                  />
+                  {touched.password && errors.password && <p className="error">{errors.password}</p>}
+                  </div>
+                  <button type="submit">Submit</button>
+              </Form>
+          {/* </Paper> */}
+      </div>
+  );
 };
 // using formik 
 const FormikRegistrationForm = withFormik({
