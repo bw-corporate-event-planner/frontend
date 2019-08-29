@@ -20,7 +20,7 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, ...props}) =
 
   return(
       <div className="master-container">
-          <Paper >
+          
               <h1>Sign In</h1>
               <Form >
                   
@@ -42,7 +42,6 @@ const LoginForm = ({ errors, touched, values, handleSubmit, status, ...props}) =
                   {touched.password && errors.password && <p className="error">{errors.password}</p>}
                   <button type="submit">Submit</button>
               </Form>
-          </Paper>
       </div>
   );
 };
