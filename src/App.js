@@ -34,7 +34,7 @@ function App() {
         <Route path="/register" component={RegisterForm} />
         <Route path="/event/:id" component={Event} />
         <Route path="/addevent" component={AddEvent} />
-        <Footer/>
+        <Footer />
       </div>
     </UserContext.Provider>
   );

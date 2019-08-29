@@ -10,12 +10,34 @@
 
   h4 {
     margin: 0 auto 10px;
+    font-size: 1.4rem;
+  }
+
+  #save-edit {
+    transition: all 0.8s ease;
+    color: #9fcdd3;
+    background-color: #f9f9f9;
+    border: none;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: underline;
+      // transition: all 0.3s ease;
+    }
   }
 
   .expenditures {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    p {
+      margin-bottom: 3rem;
+    }
 
     .progress-bar-container {
       margin-right: 20px;
@@ -57,6 +79,23 @@
 
     input:nth-last-child(1) {
       width: 20px;
+    }
+
+    button {
+      color: #9fcdd3;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      transition: all 0.8s ease;
+      outline: none;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #9fcdd3;
+        transition: all 0.8s ease;
+        color: white;
+        border: 1px solid white;
+      }
     }
   }
 
