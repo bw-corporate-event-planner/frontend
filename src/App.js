@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import RegisterForm from "./pages/Register/index";
 import EventsList from "./pages/EventsList/scenes/EventsList";
 import AddEvent from "./pages/AddEvent/AddEvent";
+import EditPage from "./pages/AddEvent/EditPage";
 import Event from "./pages/Event/scenes/Event";
 import LoginForm from "./pages/Login/LoginForm";
 import HeaderNav from "./components/HeaderNav/HeaderNav";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/register" component={RegisterForm} />
         <Route path="/event/:id" component={Event} />
         <Route path="/addevent" component={AddEvent} />
+        <Route path="/editpage/:id" component={EditPage} />
         <Footer />
       </div>
     </UserContext.Provider>
