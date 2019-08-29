@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
+import UserContext from '../../contexts/UserContext.js';
 
-const HeaderNav = () => {
+const HeaderNav = (props) => {
+  const { setUser } = useContext(UserContext);
 
-  function logout(props){
+  function logout(){
     axios
-        .post("https://egge-corporate-ep.herokuapp.com/api/logout")
+        .get("https://egge-corporate-ep.herokuapp.com/api/logout")
         .then(response => {
           console.log(response)
-          props.history.push('/')
+          setUser(false);
+          props.history.push('/login')
         })
         .catch(error => {
           console.log(error)
