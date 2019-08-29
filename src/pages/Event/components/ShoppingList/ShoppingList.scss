@@ -10,12 +10,17 @@
 
   h4 {
     margin: 0 auto 10px;
+    font-size: 1.4rem;
   }
 
   .expenditures {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    p {
+      margin-bottom: 3rem;
+    }
 
     .progress-bar-container {
       margin-right: 20px;

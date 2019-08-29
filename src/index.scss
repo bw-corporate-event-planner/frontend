@@ -6,6 +6,7 @@ $pale-aqua: #bdd4e7;
 $raisin-black: #212227;
 $prussian-blue: #003459;
 $columbia-blue: #c2dfe3;
+$main-color: #176681;
 
 html,
 body,
@@ -16,14 +17,14 @@ body,
   margin: 0;
   padding: 0;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #36393f;
 }
 
 // import scss components in logical order
 
-@import './components/HeaderNav/HeaderNav.scss';
-@import './pages/Event/components/ShoppingList/ShoppingList.scss';
-@import './pages/EventsList/scenes/EventsList.scss';
-@import './pages/Event/scenes/Event.scss';
-@import './pages/AddEvent/AddEvent.scss';
+@import "./components/HeaderNav/HeaderNav.scss";
+@import "./pages/Event/components/ShoppingList/ShoppingList.scss";
+@import "./pages/EventsList/scenes/EventsList.scss";
+@import "./pages/Event/scenes/Event.scss";
+@import "./pages/AddEvent/AddEvent.scss";

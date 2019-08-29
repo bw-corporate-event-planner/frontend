@@ -30,7 +30,6 @@ const ShoppingList = ({ shoppingList, budget, eventId }) => {
       0
     );
     setTotalCost(temp);
-    // console.log(totalCost);
   }, [shoppingListItems]);
 
   // PURCHASED ITEMS COST
@@ -72,7 +71,7 @@ const ShoppingList = ({ shoppingList, budget, eventId }) => {
         item_cost: listItemToEdit.item_cost
       })
       .then(res => {
-        console.log("PUTTTT", res);
+        // console.log("PUT LIST ITEM", res);
         let temp = shoppingListItems.map(item => {
           if (item.id === listItemToEdit.id) {
             return res.data[0];
@@ -121,7 +120,7 @@ const ShoppingList = ({ shoppingList, budget, eventId }) => {
   const addListItem = (item, event_id) => {
     // With endpoint
     api
-      // .addListItem({ ...item, event_id, vendor_id: 1 })
+      // .addListItem({ ...item, event_id, vendor_id: 1 }) // Samantha added left join
       .addListItem({ ...item, event_id })
       .then(res => {
         console.log("ADD ITEM", res.data);
