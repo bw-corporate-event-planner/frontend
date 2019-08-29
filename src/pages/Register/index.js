@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
-// import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import './RegisterForm.scss';
+import userContext from '../../contexts/UserContext.js';
 // axios post action 
 
 const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props }) => {
 
     // hook keeps track of login information 
     const [user, setUser] = useState({});
+    const {setuser} = userContext(user);
 
     // update login if change has occured 
     useEffect(() => {
         if (status) {
             setUser(newUser => ({ ...user, newUser }))
+            props.history.push('/');
         }
     }, [status]);
 
@@ -109,6 +111,7 @@ const FormikRegistrationForm = withFormik({
             .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
             .then(response => {
                 console.log(response)
+                setStatus(response.data)
             })
             .catch(error => {
                 console.log(error)

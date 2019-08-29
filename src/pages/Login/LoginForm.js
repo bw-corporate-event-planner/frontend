@@ -3,10 +3,10 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
-import userContext from './context/userContext.js';
+import userContext from '../../contexts/UserContext.js';
 // axios post action 
 
-const LoginForm = ({ errors, touched, values, handleSubmit, status, ...props}) => {
+const LoginForm = ({ errors, touched, values, user, handleSubmit, status, ...props}) => {
 
   // hook keeps track of login information 
   const [login, setLogin] = useState({});
