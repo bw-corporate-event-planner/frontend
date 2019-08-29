@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './AddEvent.scss';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import './AddEvent.scss'
 
 const EditEvent = props => {
   const {
@@ -10,40 +11,48 @@ const EditEvent = props => {
     event_start,
     event_end,
     event_budget,
-  } = props.event;
+    id
+  } = props.event
 
-  const [editToggle, setEditToggle] = useState(false);
+  const [editToggle, setEditToggle] = useState(false)
 
   const [input, setInput] = useState({
-    event_title: '',
-    event_description: '',
-    event_location: '',
-    event_start: '',
-    event_end: '',
-    event_budget: '',
-  });
+    event_title: event_title,
+    event_description: event_description,
+    event_location: event_location,
+    event_start: event_start,
+    event_end: event_end,
+    event_budget: event_budget
+  })
 
   const handleChange = e => {
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleToggle = () => setEditToggle(!editToggle);
+      [e.target.name]: e.target.value
+    })
+  }
+  const handleToggle = () => setEditToggle(!editToggle)
 
   const handleDelete = () => {
-    //   axios.delete(http:${id})
-    // .then(res => props.setEvents(res.data))
-    //     .catch(err => console.log(err))
-  };
+    axios
+      .delete(`https://egge-corporate-ep.herokuapp.com/api/events/${id}`)
+      .then(res => props.setEvents(res.data))
+      .catch(err => console.log(err))
+  }
 
   const handleEdit = e => {
-    // e.preventDefault();
-    // axios.put(http: ${ id }, input)
-    //   .then(res => props.setEvents(res.data))
-    //   .catch(err => console.log(err))
-    setEditToggle(false);
-  };
+    e.preventDefault()
+    axios
+      .put(`https://egge-corporate-ep.herokuapp.com/api/events/${id}, input`)
+      .then(res => props.setEvents(res.data))
+      .catch(err => console.log(err))
+    setEditToggle(false)
+  }
+
+  // const handleClick = () => {
+  //   props.history.push('/event/1')
+  // }
+
   return (
     <div className='formStyles'>
       {editToggle ? (
@@ -87,35 +96,39 @@ const EditEvent = props => {
               type='date'
             />
 
-            <label>
-              $
-              <input
-                name='event_budget'
-                value={input.event_budget}
-                onChange={handleChange}
-                type='number'
-                placeholder='Event Budget'
-              />
-            </label>
+            <label>Total Budget</label>
+            <input
+              name='event_budget'
+              value={input.event_budget}
+              onChange={handleChange}
+              type='number'
+            />
             <button>Update Event</button>
           </form>
           <button onClick={handleToggle}>Back</button>
         </div>
       ) : (
         <div>
+          <h1>Event Summary</h1>
           <h2>Title: {event_title}</h2>
           <h3>Description: {event_description}</h3>
           <h3>Location: {event_location}</h3>
           <h3>Start Date: {event_start}</h3>
           <h3>End Date: {event_end}</h3>
           <h3>Total Budget: {event_budget}</h3>
-          <div></div>
-          <button onClick={handleDelete}>delete</button>
-          <button onClick={handleToggle}>edit</button>
+          <div>
+            <button onClick={handleDelete}>delete</button>
+            <button onClick={handleToggle}>edit</button>
+          </div>
+          <h3>If Satisfied with Event Summary proceed to Event Listing</h3>
+
+          <Link to={'/'}>
+            <button>Event Listing</button>
+          </Link>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default EditEvent;
+export default EditEvent
