@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShoppingList from "../components/ShoppingList/ShoppingList";
 import { allEvents } from "../../../services/data";
-import { getEvent } from "../../../services/api";
+import * as api from "../../../services/api";
 import moment from "moment";
 
 // conditional rendering based on localStorage key (set buttons to active/inactive)
@@ -17,7 +17,8 @@ const Event = props => {
   const eventId = props.match.params.id;
   console.log("EVENT ID", eventId);
   useEffect(() => {
-    getEvent(eventId)
+    api
+      .getEvent(eventId)
       .then(res => {
         console.log("GET", res.data);
         setEvent(res.data);
@@ -31,12 +32,22 @@ const Event = props => {
 
   // console.log(timeTilEvent);
 
+  const deleteEvent = e => {
+    e.preventDefault();
+    api
+      .deleteEvent(eventId)
+      .then(res => {
+        props.history.push("/");
+      })
+      .catch(err => console.log(err.response));
+  };
+
   return (
     <div className="event-page-card">
       <h3>{event.event_title}</h3>
       <div className="event-buttons-container">
         <span>Edit event</span>
-        <span>Delete event</span>
+        <span onClick={deleteEvent}>Delete event</span>
       </div>
       <p>Description: {event.event_description}</p>
       <p>
