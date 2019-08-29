@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Event from "../../Event/scenes/Event";
 import { Link } from "react-router-dom";
 import { allEvents } from "../../../services/data";
 import { getEvents } from "../../../services/api";
@@ -18,7 +17,7 @@ const EventsList = props => {
   useEffect(() => {
     getEvents()
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setEventsList(res.data);
       })
       .catch(err => console.log(err));
