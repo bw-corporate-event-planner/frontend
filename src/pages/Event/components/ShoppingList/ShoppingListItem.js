@@ -42,7 +42,7 @@ const ShoppingListItem = ({
             <span>.00</span>
           </label>
           <div className="item-buttons-container">
-            <button>save edit</button>
+            <button id="save-edit">save edit</button>
             <span>toggle</span>
             <span>delete</span>
           </div>
