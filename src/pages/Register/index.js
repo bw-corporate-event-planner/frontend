@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import "./RegisterForm.scss";
 import UserContext from "../../contexts/UserContext.js";
 // axios post action
 

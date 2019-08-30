@@ -1,10 +1,9 @@
 .event-page-card {
-  margin: 2rem auto;
-  padding: 2rem;
+  // padding: $padding-top-for-navbar;
   width: 90%;
-  box-shadow: 0 8px 6px -6px grey;
   background-color: white;
   border-radius: 5px;
+  margin: 0 auto;
 
   #budget {
     border-radius: 5px;
@@ -31,7 +30,6 @@
 
   .event-info {
     text-align: left;
-    margin-top: 2rem;
   }
 
   .event-buttons-container {

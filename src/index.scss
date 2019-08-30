@@ -4,6 +4,8 @@
 $raisin-black: #212227;
 $columbia-blue: #c2dfe3;
 $main-color: #176681;
+$gradient: linear-gradient(to bottom right, #0b8793, #1d2671);
+$padding-top-for-navbar: 10rem;
 
 html,
 body,
@@ -24,5 +26,7 @@ body,
 @import "./components/HeaderNav/HeaderNav.scss";
 @import "./pages/Event/components/ShoppingList/ShoppingList.scss";
 @import "./pages/EventsList/scenes/EventsList.scss";
+@import "./pages/Register/RegisterForm.scss";
 @import "./pages/Event/scenes/Event.scss";
 @import "./pages/AddEvent/AddEvent.scss";
+@import "./components/Footer.scss";
