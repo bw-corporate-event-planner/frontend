@@ -30,8 +30,8 @@ const HeaderNav = props => {
       </div>
       <div className="nav-links">
         <NavLink to="/">Your Events</NavLink>
-        {isAdmin() ? <NavLink to="/addevent">Create New Event</NavLink> : null}
-        {/* <NavLink to="/addevent">Create New Event</NavLink> */}
+        {/* {isAdmin() ? <NavLink to="/addevent">Create New Event</NavLink> : null} */}
+        <NavLink to="/addevent">Create New Event</NavLink>
         <NavLink to="/register">Register</NavLink>
         <NavLink to="/login">Login</NavLink>
         {user && <button onClick={logout}>LOGOUT</button>}
