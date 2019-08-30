@@ -1,4 +1,5 @@
 .events-list {
+  // padding-top: $padding-top-for-navbar;
   form {
     display: flex;
     align-items: center;
@@ -31,22 +32,26 @@
 
 .events-container {
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  margin: 2rem auto;
+  display: block;
 
   .event-card {
-    height: 15rem;
-    width: 40%;
-    padding: 2rem;
-    margin: 2rem;
-    box-shadow: 0 5px 6px -6px $raisin-black;
-    transition: all 0.7s ease;
+    padding: 1rem;
+    // box-shadow: 2px 5px 6px -6px $raisin-black;
+    transition: all 0.4s ease;
 
     &:hover {
       cursor: pointer;
-      transform: scale(1.03);
+      transform: translateY(10px);
+      box-shadow: 2px 5px 6px -6px $raisin-black;
+
+      .view-event-button {
+        transform: translateY(0%);
+      }
+    }
+
+    .view-event-button {
+      text-transform: uppercase;
     }
   }
 }
