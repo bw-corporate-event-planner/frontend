@@ -23,13 +23,10 @@ const ShoppingListForm = ({ addListItem, eventId }) => {
     });
   };
 
-  console.log(input);
   const handleSubmit = e => {
     e.preventDefault();
 
     if (input.item_name === "") {
-      console.log("Enter an input");
-
       notification.open({
         message: "Please enter the budget item name"
       });

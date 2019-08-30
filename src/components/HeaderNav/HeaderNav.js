@@ -4,7 +4,7 @@ import axios from "axios";
 import UserContext from "../../contexts/UserContext.js";
 
 const HeaderNav = props => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser, isAdmin } = useContext(UserContext);
 
   function logout() {
     axios
@@ -20,11 +20,6 @@ const HeaderNav = props => {
   }
 
   // TESTING CONDITIONAL RENDERING
-  const user = {
-    // role: "admin",
-    role: "user"
-    // role: "manager"
-  };
 
   const loggedOut = null;
 
@@ -35,16 +30,11 @@ const HeaderNav = props => {
       </div>
       <div className="nav-links">
         <NavLink to="/">Your Events</NavLink>
-        {user.role === "admin" ? (
-          <NavLink to="/addevent">Create New Event</NavLink>
-        ) : null}
+        {isAdmin() ? <NavLink to="/addevent">Create New Event</NavLink> : null}
         {/* <NavLink to="/addevent">Create New Event</NavLink> */}
         <NavLink to="/register">Register</NavLink>
-        {/* {loggedOut ? ( */}
         <NavLink to="/login">Login</NavLink>
-        {/* ) : ( */}
-        <button onClick={logout}>LOGOUT</button>
-        {/* )} */}
+        {user && <button onClick={logout}>LOGOUT</button>}
       </div>
     </nav>
   );

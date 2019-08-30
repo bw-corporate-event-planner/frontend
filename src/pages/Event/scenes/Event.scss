@@ -51,7 +51,14 @@
       &:hover {
         cursor: pointer;
         background-color: lighten($main-color, 50%);
-        transition: all 0.8s ease;
+      }
+
+      &:disabled {
+        background-color: lightgray;
+
+        &:hover {
+          cursor: not-allowed;
+        }
       }
     }
   }

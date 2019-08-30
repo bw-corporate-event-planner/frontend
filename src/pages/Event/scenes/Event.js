@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ShoppingList from "../components/ShoppingList/ShoppingList";
 import { allEvents } from "../../../services/data";
 import * as api from "../../../services/api";
 import moment from "moment";
+import UserContext from "../../../contexts/UserContext";
 
 // conditional rendering based on localStorage key (set buttons to active/inactive)
 // axiosWithAuth GET event info
 
 const Event = props => {
+  const { user, setUser, isAdmin } = useContext(UserContext);
+
   // Uncomment to use dummy data instead of API endpoints
   // const { eventId } = props.match.params.id;
   // const [event, setEvent] = useState(allEvents[props.match.params.id - 1]); // hard coded to work with dummy array
@@ -15,12 +18,12 @@ const Event = props => {
   // Comment out to use dummy dummy instead API endpoints
   const [event, setEvent] = useState({ items: [] });
   const eventId = props.match.params.id;
-  console.log("EVENT ID", eventId);
+  // console.log("EVENT ID", eventId);
   useEffect(() => {
     api
       .getEvent(eventId)
       .then(res => {
-        console.log("GET", res.data);
+        // console.log("GET", res.data);
         setEvent(res.data);
       })
       .catch(err => console.log(err));
@@ -68,10 +71,18 @@ const Event = props => {
           </p>
         </div>
         <div className="event-buttons-container">
-          <button className="event-button" onClick={editEvent}>
+          <button
+            className="event-button"
+            onClick={editEvent}
+            disabled={!isAdmin()}
+          >
             Edit event
           </button>
-          <button className="event-button" onClick={deleteEvent}>
+          <button
+            className="event-button"
+            onClick={deleteEvent}
+            disabled={!isAdmin()}
+          >
             Delete event
           </button>
         </div>
