@@ -1,56 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { withFormik, Form, Field } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-// import Paper from '@material-ui/core/Paper';
-
-
-import './LoginForm.scss';
-
+import userContext from '../../contexts/UserContext.js';
 // axios post action 
 
 const LoginForm = ({ errors, touched, values, handleSubmit, status, props}) => {
 
   // hook keeps track of login information 
   const [login, setLogin] = useState({});
-
+  
+  /// const {setUser} = userContext(user);
   // update login if change has occured 
   useEffect(() => {
       if (status) {
-          setLogin(user => ({...login, user}))
+          setLogin(status);
       }
   }, [status]); 
 
   return(
-      <div className="form-container">
-          {/* <Paper > */}
-              <h1>Log In</h1>
+      <div className="master-container">
+          
+              <h1>Sign In</h1>
               <Form >
                   
-			  <div className="field">
                   {/* name */}
                   <Field 
                       type="text" 
                       name="username" 
-                      placeholder="Username"  
+                      placeholder="Userame"  
                   />
-				  {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
-				  </div>
+                  {touched.name && errors.name && ( <p className="error">{errors.name}</p> )}
 
-				  <div className="field">
                   {/* password */}
                   <Field 
-                      type="password" 
+                      type="text" 
                       name="password" 
                       placeholder="Password" 
                      
                   />
-				  {touched.password && errors.password && <p className="error">{errors.password}</p>}
-				  </div>
-				  
+                  {touched.password && errors.password && <p className="error">{errors.password}</p>}
                   <button type="submit">Submit</button>
               </Form>
-          {/* </Paper> */}
       </div>
   );
 };
@@ -83,7 +74,9 @@ const FormikLoginForm = withFormik({
         .post("https://egge-corporate-ep.herokuapp.com/api/login", values)
         .then(response => {
           console.log(response)
-          console.log('we in here')
+          console.log('we in there')
+          setStatus(response.data)
+          props.history.push('/');
         })
         .catch(error => {
           console.log(error)
