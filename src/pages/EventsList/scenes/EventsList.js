@@ -36,9 +36,22 @@ const EventsList = props => {
     return <div style={{ height: "600px" }}>Loading events...</div>;
   }
 
+  // const sortEvents = () => {
+  //   const sortedEvents = eventsList;
+  //   console.log(sortedEvents);
+  //   sortedEvents.sort((a, b) => {
+  //     let c = new Date(a.event_start);
+  //     let d = new Date(b.event_start);
+  //     return c - d;
+  //   });
+  //   console.log(sortedEvents);
+  //   setEventsList(sortedEvents);
+  // };
+
   return (
     <div className="events-list">
       <h2>Upcoming events</h2>
+      {/* <button onClick={sortEvents}>SORT</button> */}
       <form>
         <input
           type="text"
