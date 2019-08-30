@@ -9,7 +9,7 @@ import UserContext from "../../../contexts/UserContext";
 // axiosWithAuth GET event info
 
 const Event = props => {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, isAdmin } = useContext(UserContext);
 
   // Uncomment to use dummy data instead of API endpoints
   // const { eventId } = props.match.params.id;
@@ -71,10 +71,18 @@ const Event = props => {
           </p>
         </div>
         <div className="event-buttons-container">
-          <button className="event-button" onClick={editEvent}>
+          <button
+            className="event-button"
+            onClick={editEvent}
+            disabled={!isAdmin()}
+          >
             Edit event
           </button>
-          <button className="event-button" onClick={deleteEvent}>
+          <button
+            className="event-button"
+            onClick={deleteEvent}
+            disabled={!isAdmin()}
+          >
             Delete event
           </button>
         </div>

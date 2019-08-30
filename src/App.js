@@ -10,16 +10,19 @@ import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Footer from "./components/Footer";
 import UserContext from "./contexts/UserContext";
 import { refresh } from "./services/api";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
-  const [user, setUser] = 
-  useState({});
-  console.log(user);
+  const [user, setUser] = useState({});
+
+  const isAdmin = () => {
+    return user && [1, 2].includes(user.role_id);
+  };
 
   useEffect(() => {
     refresh()
       .then(res => {
-        setUser(res.data);
+        setUser(res.data[0]);
       })
       .catch(err => {
         setUser(false);
@@ -27,15 +30,15 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser, isAdmin }}>
       <div>
         <Route path="/" component={HeaderNav} />
-        <Route exact path="/" component={EventsList} />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        <Route path="/event/:id" component={Event} />
-        <Route path="/addevent" component={AddEvent} />
-        <Route path="/editpage/:id" component={EditPage} />
+        <ProtectedRoute exact path="/" component={EventsList} />
+        <ProtectedRoute path="/event/:id" component={Event} />
+        <ProtectedRoute path="/addevent" component={AddEvent} />
+        <ProtectedRoute path="/editpage/:id" component={EditPage} />
         <Footer />
       </div>
     </UserContext.Provider>
