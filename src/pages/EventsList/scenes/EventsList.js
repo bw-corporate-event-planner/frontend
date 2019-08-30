@@ -58,10 +58,12 @@ const EventsList = props => {
                 "MMMM Do, YYYY"
               );
               const endDate = moment(event.event_end).format("MMMM Do, YYYY");
+              const relativeDate = moment(event.event_start).fromNow();
 
               return (
                 <Timeline.Item>
                   <div className="event-card">
+                    <p className="relative-date">{relativeDate}</p>
                     <h3>{event.event_title}</h3>
                     <p>Budget: ${event.event_budget}</p>
                     <p>
