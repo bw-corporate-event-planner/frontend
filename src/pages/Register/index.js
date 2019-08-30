@@ -16,7 +16,7 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
           setUser(newUser => ({...user, newUser}))
       }
   }, [status]); 
-
+console.log('this is values', values)
   return(
       <div className="form-container-register">
           {/* <Paper > */}
@@ -45,14 +45,14 @@ const RegistrationForm = ({ errors, touched, values, handleSubmit, status, props
 
                   <div className="field">
                   {/* role */}
-                  <Field component='select' name='role'>
+                  <Field component='select' name='role_id'>
                   <option>Select a Role</option>
                         <option value={1}>Marketing</option>
                         <option value={2}>Back-End</option>
                         <option value={3}>Front-End</option>
                   </Field>
                       
-                  {touched.role && errors.role && ( <p className="error">{errors.role}</p> )}
+                  {touched.role_id && errors.role_id && ( <p className="error">{errors.role_id}</p> )}
                   </div>
 
 <div className="field">
@@ -103,8 +103,9 @@ const FormikRegistrationForm = withFormik({
   handleSubmit(values, { resetForm, props, setStatus }) {
       console.log("values, props", values, props)
 
+
       axios
-        .get("https://egge-corporate-ep.herokuapp.com/api/register", values)
+        .post("https://egge-corporate-ep.herokuapp.com/api/register", values)
         .then(response => {
           console.log(response)
           setStatus(response.data)
