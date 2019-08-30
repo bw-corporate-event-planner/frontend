@@ -10,7 +10,7 @@ import UserContext from "../../../contexts/UserContext";
 
 const Event = props => {
   const { user, setUser } = useContext(UserContext);
-  console.log("USER---", user);
+
   // Uncomment to use dummy data instead of API endpoints
   // const { eventId } = props.match.params.id;
   // const [event, setEvent] = useState(allEvents[props.match.params.id - 1]); // hard coded to work with dummy array
